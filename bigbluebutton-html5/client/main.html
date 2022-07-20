@@ -17,13 +17,18 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 -->
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
   <style>
     html {
       box-sizing: border-box;
     }
 
-    *, *:before, *:after {
+    *,
+    *:before,
+    *:after {
       box-sizing: inherit;
     }
 
@@ -31,7 +36,8 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       position: fixed;
       height: 100%;
       font-family: 'Source Sans Pro', Arial, sans-serif;
-      font-size: 1rem; /* 16px */
+      font-size: 1rem;
+      /* 16px */
       background-color: #06172A;
     }
 
@@ -61,7 +67,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       padding: 0;
       margin: -1px;
       overflow: hidden;
-      clip: rect(0,0,0,0);
+      clip: rect(0, 0, 0, 0);
       border: 0;
     }
 
@@ -74,6 +80,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
     .remove-z-index {
       z-index: 0;
     }
+
     /* .full-screen {
       height: 100% !important;
       width: 100% !important;
@@ -89,32 +96,95 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       opacity: 1;
     }
 
-    :-moz-placeholder, /* Firefox 4 to 18 */
-    ::-moz-placeholder { /* Firefox 19+ */
+    :-moz-placeholder,
+    /* Firefox 4 to 18 */
+    ::-moz-placeholder {
+      /* Firefox 19+ */
       color: var(--palette-placeholder-text);
       opacity: 1;
     }
+
   </style>
   <script>
     document.addEventListener('gesturestart', function (e) {
       e.preventDefault();
     });
   </script>
-  <script src="compatibility/adapter.js?v=VERSION" language="javascript"></script>
-  <script src="compatibility/sip.js?v=VERSION" language="javascript"></script>
-  <script src="compatibility/kurento-utils.js?v=VERSION" language="javascript"></script>
-  <script src="compatibility/tflite-simd.js?v=VERSION" language="javascript"></script>
-  <script src="compatibility/tflite.js?v=VERSION" language="javascript"></script>
+  <script
+    src="compatibility/adapter.js?v=VERSION"
+    language="javascript"
+  ></script>
+  <script
+    src="compatibility/sip.js?v=VERSION"
+    language="javascript"
+  ></script>
+  <script
+    src="compatibility/kurento-utils.js?v=VERSION"
+    language="javascript"
+  ></script>
+  <script
+    src="compatibility/tflite-simd.js?v=VERSION"
+    language="javascript"
+  ></script>
+  <script
+    src="compatibility/tflite.js?v=VERSION"
+    language="javascript"
+  ></script>
   <!-- fonts -->
-  <link rel="preload" href="fonts/BbbIcons/bbb-icons.woff?v=VERSION" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Light.woff?v=VERSION" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Regular.woff?v=VERSION" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Semibold.woff?v=VERSION" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Bold.woff?v=VERSION" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-LightItalic.woff?v=VERSION" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-Italic.woff?v=VERSION" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-SemiboldItalic.woff?v=VERSION" as="font" crossorigin="anonymous"/>
-  <link rel="preload" href="fonts/SourceSansPro/SourceSansPro-BoldItalic.woff?v=VERSION" as="font" crossorigin="anonymous"/>
+  <link
+    rel="preload"
+    href="fonts/BbbIcons/bbb-icons.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="preload"
+    href="fonts/SourceSansPro/SourceSansPro-Light.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="preload"
+    href="fonts/SourceSansPro/SourceSansPro-Regular.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="preload"
+    href="fonts/SourceSansPro/SourceSansPro-Semibold.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="preload"
+    href="fonts/SourceSansPro/SourceSansPro-Bold.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="preload"
+    href="fonts/SourceSansPro/SourceSansPro-LightItalic.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="preload"
+    href="fonts/SourceSansPro/SourceSansPro-Italic.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="preload"
+    href="fonts/SourceSansPro/SourceSansPro-SemiboldItalic.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="preload"
+    href="fonts/SourceSansPro/SourceSansPro-BoldItalic.woff?v=VERSION"
+    as="font"
+    crossorigin="anonymous"
+  />
 
   <style>
     @font-face {
@@ -123,14 +193,61 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       font-weight: normal;
       font-style: normal;
     }
+
   </style>
   <!-- fonts -->
+  <!-- Google Analytics Code -->
+  <script defer>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-97722385-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!-- Google Tag Manager -->
+  <script defer>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NP5S2LF');
+  </script>
+  <!-- End Google Tag Manager -->
 </head>
+
 <body style="background-color: #06172A">
-  <div id="aria-polite-alert" aria-live="polite" aria-atomic="false" class="sr-only"></div>
-  <div id="app" role="document">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe
+      src="https://www.googletagmanager.com/ns.html?id=GTM-NP5S2LF"
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+      loading='lazy'
+    ></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div
+    id="aria-polite-alert"
+    aria-live="polite"
+    aria-atomic="false"
+    class="sr-only"
+  ></div>
+  <div
+    id="app"
+    role="document"
+  >
   </div>
   <span id="destination"></span>
-  <audio id="remote-media" autoplay>
+  <audio
+    id="remote-media"
+    autoplay
+  >
   </audio>
 </body>
