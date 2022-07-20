@@ -5,6 +5,8 @@ import { removeAnnotationsStreamer } from '/imports/api/annotations/server/strea
 import { removeCursorStreamer } from '/imports/api/cursor/server/streamer';
 import { removeExternalVideoStreamer } from '/imports/api/external-videos/server/streamer';
 
+import transferGroupChat from '/imports/api/group-chat/server/methods/transferGroupChat';
+
 import clearUsers from '/imports/api/users/server/modifiers/clearUsers';
 import clearUsersSettings from '/imports/api/users-settings/server/modifiers/clearUsersSettings';
 import clearGroupChat from '/imports/api/group-chat/server/modifiers/clearGroupChat';
@@ -39,7 +41,8 @@ export default function meetingHasEnded(meetingId) {
     removeExternalVideoStreamer(meetingId);
   }
 
-  return Meetings.remove({ meetingId }, () => {
+  return Meetings.remove({ meetingId }, async () => {
+    await transferGroupChat(meetingId);
     clearCaptions(meetingId);
     clearPads(meetingId);
     clearGroupChat(meetingId);
