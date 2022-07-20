@@ -8,7 +8,7 @@ public:
     # audio
     autoJoin: true
     # Disables the listen only option in audio modal.
-    listenOnlyMode: true
+    listenOnlyMode: false
     forceListenOnly: false
     # Skips the echo test when connecting with microphone.
     skipCheck: false
@@ -26,13 +26,14 @@ public:
     # "media.setsinkid.enabled" to make it work properly
     # enableDynamicAudioDeviceSelection: true
     #
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
-    bbbServerVersion: HTML5_FULL_BBB_VERSION
+    clientTitle: TutorBees
+    appName: TutorBees.net
+    bbbServerVersion: 2.5
     displayBbbServerVersion: true
-    copyright: '©2022 BigBlueButton Inc.'
+    copyright: '© Copyright 2022, TutorBees.net'
     html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    helpLink: https://support.tutorbees.net/open.php
+    pushMessageUrl: https://tutorbees.net
     lockOnJoin: true
     cdn: ''
     basename: '/html5client'
@@ -551,7 +552,7 @@ public:
     # Number of reconnection attempts of the signaling websocket, before
     # showing to the user there's an audio error.
     audioReconnectionAttempts: 3
-    sipjsHackViaWs: false
+    sipjsHackViaWs: true
     # the fqdn of this host.
     # If you run a traditional setup of multiple nodes behind scalelite and the users see the hostnames of the
     # individual nodes, you can leave this at the default setting
