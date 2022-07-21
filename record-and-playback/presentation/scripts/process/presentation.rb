@@ -1,6 +1,5 @@
-# frozen_string_literal: true
 # Set encoding to utf-8
-# encoding: UTF-8
+# frozen_string_literal: true
 
 #
 # BigBlueButton open source conferencing system - http://www.bigbluebutton.org/
@@ -25,7 +24,7 @@
 # require File.expand_path('../../../../core/lib/recordandplayback', __FILE__)
 
 # For PRODUCTION
-require File.expand_path('../../../lib/recordandplayback', __FILE__)
+require File.expand_path('../../lib/recordandplayback', __dir__)
 
 require 'rubygems'
 require 'optimist'
@@ -41,10 +40,10 @@ meeting_id = opts[:meeting_id]
 # This script lives in scripts/archive/steps while properties.yaml lives in scripts/
 props = BigBlueButton.read_props
 presentation_props = YAML.safe_load(File.open('presentation.yml'))
-filepathPresOverride = "/etc/bigbluebutton/recording/presentation.yml"
+filepathPresOverride = '/etc/bigbluebutton/recording/presentation.yml'
 hasOverride = File.file?(filepathPresOverride)
-if (hasOverride)
-  presOverrideProps = YAML::load(File.open(filepathPresOverride))
+if hasOverride
+  presOverrideProps = YAML.load(File.open(filepathPresOverride))
   presentation_props = presentation_props.merge(presOverrideProps)
 end
 
@@ -79,7 +78,7 @@ unless FileTest.directory?(target_dir)
     metadata_xml = File.new("#{target_dir}/metadata.xml", 'w')
     metadata_xml.write(metaxml)
     metadata_xml.close
-    BigBlueButton.logger.info('Created inital metadata.xml')
+    BigBlueButton.logger.info('Created initial metadata.xml')
 
     BigBlueButton::AudioProcessor.process(raw_archive_dir, "#{target_dir}/audio")
     events_xml = "#{raw_archive_dir}/events.xml"
@@ -127,6 +126,46 @@ unless FileTest.directory?(target_dir)
 
     participants = recording.at_xpath('participants')
     participants.content = BigBlueButton::Events.get_num_participants(@doc)
+
+    BigBlueButton::Events.get_participants(@doc).each do |data|
+      participant = Nokogiri::XML::Node.new 'participant', @doc
+
+      userId = Nokogiri::XML::Node.new 'userId', @doc
+      userId.content = data[:userId]
+
+      name = Nokogiri::XML::Node.new 'name', @doc
+      name.content = data[:name]
+
+      role = Nokogiri::XML::Node.new 'role', @doc
+      role.content = data[:role]
+
+      timestampUTC = Nokogiri::XML::Node.new 'timestampUTC', @doc
+      timestampUTC.content = data[:timestampUTC]
+
+      participant.add_child(userId)
+      participant.add_child(name)
+      participant.add_child(role)
+      participant.add_child(timestampUTC)
+      recording.add_child(participant)
+    end
+
+    BigBlueButton::Events.get_participant_talking(@doc).each do |data|
+      event = Nokogiri::XML::Node.new 'talkingEvent', @doc
+
+      userId = Nokogiri::XML::Node.new 'userId', @doc
+      userId.content = data[:userId]
+
+      timestampUTC = Nokogiri::XML::Node.new 'timestampUTC', @doc
+      timestampUTC.content = data[:timestampUTC]
+
+      talking = Nokogiri::XML::Node.new 'talking', @doc
+      talking.content = data[:talking]
+
+      event.add_child(userId)
+      event.add_child(timestampUTC)
+      event.add_child(talking)
+      recording.add_child(event)
+    end
 
     ## Remove empty meta
     ## TODO: Clarify reasoning behind creating an empty node to then remove it
@@ -178,6 +217,7 @@ unless FileTest.directory?(target_dir)
               page, pres_pdf, "#{target_pres_dir}/slide-#{page}.png", '1600x1600'
             )
             next unless File.exist?("#{pres_dir}/textfiles/slide-#{page}.txt")
+
             t = File.read("#{pres_dir}/textfiles/slide-#{page}.txt", encoding: 'UTF-8')
             text["slide-#{page}"] = t.encode('UTF-8', invalid: :replace)
             FileUtils.cp("#{pres_dir}/textfiles/slide-#{page}.txt", "#{target_pres_dir}/textfiles")
@@ -197,6 +237,7 @@ unless FileTest.directory?(target_dir)
     BigBlueButton.logger.info('Generating closed captions')
     ret = BigBlueButton.exec_ret('utils/gen_webvtt', '-i', raw_archive_dir, '-o', target_dir)
     raise 'Generating closed caption files failed' if ret != 0
+
     captions = JSON.parse(File.read("#{target_dir}/captions.json"))
 
     unless presentation_text.empty?
@@ -225,7 +266,11 @@ unless FileTest.directory?(target_dir)
 
       webcam_framerate = 15 if webcam_framerate.nil?
       processed_audio_file = BigBlueButton::AudioProcessor.get_processed_audio_file(raw_archive_dir, "#{target_dir}/audio")
-      BigBlueButton.process_webcam_videos(target_dir, raw_archive_dir, webcam_width, webcam_height, webcam_framerate, presentation_props['audio_offset'], processed_audio_file, presentation_props['video_formats'], props['show_moderator_viewpoint'])
+      BigBlueButton.process_webcam_videos(
+        target_dir, raw_archive_dir, webcam_width, webcam_height, webcam_framerate,
+        presentation_props['audio_offset'], processed_audio_file,
+        presentation_props['video_formats'], props['show_moderator_viewpoint']
+      )
     end
 
     if !Dir["#{raw_archive_dir}/deskshare/*"].empty? && presentation_props['include_deskshare']
@@ -234,7 +279,10 @@ unless FileTest.directory?(target_dir)
       deskshare_framerate = presentation_props['deskshare_output_framerate']
       deskshare_framerate = 5 if deskshare_framerate.nil?
 
-      BigBlueButton.process_deskshare_videos(target_dir, raw_archive_dir, deskshare_width, deskshare_height, deskshare_framerate, presentation_props['video_formats'])
+      BigBlueButton.process_deskshare_videos(
+        target_dir, raw_archive_dir, deskshare_width, deskshare_height,
+        deskshare_framerate, presentation_props['video_formats']
+      )
     end
 
     # Copy shared notes from raw files
