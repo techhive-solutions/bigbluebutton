@@ -29,7 +29,7 @@ public:
     clientTitle: TutorBees
     appName: TutorBees.net
     bbbServerVersion: 2.5
-    displayBbbServerVersion: true
+    displayBbbServerVersion: false
     copyright: '© Copyright 2022, TutorBees.net'
     html5ClientBuild: HTML5_CLIENT_VERSION
     helpLink: https://support.tutorbees.net/open.php
@@ -207,7 +207,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://meet.tutorbees.net/bbb-webrtc-sfu
     # Valid for video-provider. Time (ms) before its WS connection times out
     # and tries to reconnect.
     wsConnectionTimeout: 4000
@@ -479,7 +479,7 @@ public:
     hidePresentation: false
     showParticipantsOnLogin: true
   pads:
-    url: ETHERPAD_HOST
+    url: https://meet.tutorbees.net/pad
     cookie:
       path: /
       sameSite: None
@@ -746,7 +746,7 @@ public:
     external:
       enabled: false
       level: info
-      url: https://LOG_HOST/html5Log
+      url: https://meet.tutorbees.net/html5Log
       method: POST
       throttleInterval: 400
       flushOnClose: true
