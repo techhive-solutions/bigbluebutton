@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withModalMounter } from '/imports/ui/components/common/modal/service';
 import EndMeetingConfirmationContainer from '/imports/ui/components/end-meeting-confirmation/container';
 import { makeCall } from '/imports/ui/services/api';
-import AboutContainer from '/imports/ui/components/about/container';
 import SettingsMenuContainer from '/imports/ui/components/settings/container';
 import BBBMenu from '/imports/ui/components/common/menu/component';
 import ShortcutHelpComponent from '/imports/ui/components/shortcut-help/component';
@@ -208,28 +207,8 @@ class SettingsDropdown extends PureComponent {
         label: intl.formatMessage(intlMessages.settingsLabel),
         // description: intl.formatMessage(intlMessages.settingsDesc),
         onClick: () => mountModal(<SettingsMenuContainer />),
-      },
-      {
-        key: 'list-item-about',
-        icon: 'about',
-        label: intl.formatMessage(intlMessages.aboutLabel),
-        // description: intl.formatMessage(intlMessages.aboutDesc),
-        onClick: () => mountModal(<AboutContainer />),
-      },
+      }
     );
-
-    if (helpButton) {
-      this.menuItems.push(
-        {
-          key: 'list-item-help',
-          icon: 'help',
-          iconRight: 'popout_window',
-          label: intl.formatMessage(intlMessages.helpLabel),
-          // description: intl.formatMessage(intlMessages.helpDesc),
-          onClick: () => window.open(`${helpLink}`),
-        },
-      );
-    }
 
     this.menuItems.push(
       {
