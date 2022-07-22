@@ -602,7 +602,7 @@ public:
     restoreOnUpdate: false
     oldMinimizeButton: false
     uploadEndpoint: '/bigbluebutton/presentation/upload'
-    fileUploadConstraintsHint: false
+    fileUploadConstraintsHint: true
     # mirroredFromBBBCore are values controlled in bbb-web properties file. We include a copy here for notification purposes
     mirroredFromBBBCore:
       uploadSizeMax: 30000000
