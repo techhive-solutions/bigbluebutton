@@ -301,16 +301,16 @@ class PresentationUploader extends Component {
     // Updates presentation list when chat modal opens to avoid missing presentations
     if (isOpen && !prevProps.isOpen) {
       registerTitleView(intl.formatMessage(intlMessages.uploadViewTitle));
-      const  focusableElements =
+      const focusableElements =
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
       const modal = document.getElementById('upload-modal');
       const firstFocusableElement = modal?.querySelectorAll(focusableElements)[0];
       const focusableContent = modal?.querySelectorAll(focusableElements);
       const lastFocusableElement = focusableContent[focusableContent.length - 1];
-      
+
       firstFocusableElement.focus();
-  
-      modal.addEventListener('keydown', function(e) {
+
+      modal.addEventListener('keydown', function (e) {
         let tab = e.key === 'Tab' || e.keyCode === TAB;
         if (!tab) return;
         if (e.shiftKey) {
@@ -667,7 +667,7 @@ class PresentationUploader extends Component {
     } = this.props;
 
     const options = {
-      0: fileSizeMax/1000000,
+      0: fileSizeMax / 1000000,
       1: filePagesMax,
     };
 
@@ -816,7 +816,7 @@ class PresentationUploader extends Component {
 
     const { animations } = Settings.application;
 
-    const { isRemovable } = item; 
+    const { isRemovable } = item;
 
     return (
       <Styled.PresentationItem
@@ -863,16 +863,16 @@ class PresentationUploader extends Component {
                 onClick={() => this.handleToggleDownloadable(item)}
                 animations={animations}
               />
-              ) : null
+            ) : null
             }
             <Styled.ItemAction>
               <Checkbox
-              animations={animations}
-              ariaLabel={`${intl.formatMessage(intlMessages.setAsCurrentPresentation)} ${item.filename}`}
-              checked={item.isCurrent}
-              keyValue={item.id}
-              onChange={() => this.handleCurrentChange(item.id)}
-              disabled={disableActions}
+                animations={animations}
+                ariaLabel={`${intl.formatMessage(intlMessages.setAsCurrentPresentation)} ${item.filename}`}
+                checked={item.isCurrent}
+                keyValue={item.id}
+                onChange={() => this.handleCurrentChange(item.id)}
+                disabled={disableActions}
               />
             </Styled.ItemAction>
             {isRemovable ? (
@@ -887,7 +887,7 @@ class PresentationUploader extends Component {
                 onClick={() => this.handleRemove(item)}
                 animations={animations}
               />
-              ) : null
+            ) : null
             }
           </Styled.TableItemActions>
         )}
@@ -982,7 +982,11 @@ class PresentationUploader extends Component {
   }
 
   renderPresentationItemStatus(item) {
-    const { intl } = this.props;
+    const {
+      intl,
+      fileSizeMax
+    } = this.props;
+
     if (!item.upload.done && item.upload.progress === 0) {
       return intl.formatMessage(intlMessages.fileToUpload);
     }
@@ -996,13 +1000,8 @@ class PresentationUploader extends Component {
     const constraint = {};
 
     if (item.upload.done && item.upload.error) {
-      if (item.conversion.status === 'FILE_TOO_LARGE') {
-        constraint['0'] = ((item.conversion.maxFileSize) / 1000 / 1000).toFixed(2);
-      }
-
-      if (item.upload.progress < 100) {
-        const errorMessage = intlMessages.badConnectionError;
-        return intl.formatMessage(errorMessage);
+      if (item.conversion.status === 'FILE_TOO_LARGE' || item.upload.status === 413) {
+        constraint['0'] = fileSizeMax / 1000000;
       }
 
       const errorMessage = intlMessages[item.upload.status] || intlMessages.genericError;
