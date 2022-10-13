@@ -74,6 +74,7 @@ class Presentation extends PureComponent {
       zoom: 100,
       fitToWidth: false,
       isFullscreen: false,
+      hadPresentation: false,
     };
 
     this.currentPresentationToastId = null;
@@ -161,8 +162,7 @@ class Presentation extends PureComponent {
       clearFakeAnnotations,
     } = this.props;
 
-    const { presentationWidth, presentationHeight } = this.state;
-
+    const { presentationWidth, presentationHeight, hadPresentation } = this.state;
     const {
       numCameras: prevNumCameras,
       presentationBounds: prevPresentationBounds,
@@ -205,7 +205,7 @@ class Presentation extends PureComponent {
           this.currentPresentationToastId = toast(this.renderCurrentPresentationToast(), {
             onClose: () => { this.currentPresentationToastId = null; },
             autoClose: shouldCloseToast,
-            className: 'actionToast',
+            className: 'actionToast currentPresentationToast',
           });
         }
       }
@@ -218,6 +218,11 @@ class Presentation extends PureComponent {
           autoClose: true,
           render: this.renderCurrentPresentationToast(),
         });
+      }
+
+      if (layoutSwapped && restoreOnUpdate && currentSlide && hadPresentation) {
+        toggleSwapLayout(layoutContextDispatch);
+        this.setState({ hadPresentation: false });
       }
     }
 
@@ -262,6 +267,10 @@ class Presentation extends PureComponent {
         type: ACTIONS.SET_PRESENTATION_NUM_CURRENT_SLIDE,
         value: currentSlide.num,
       });
+    }
+
+    if (prevProps.currentSlide && !currentSlide) {
+      this.setState({ hadPresentation: true });
     }
   }
 
