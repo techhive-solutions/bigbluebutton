@@ -884,7 +884,8 @@ public class MeetingService implements MessageListener {
           try {
             callbackUrl = new URIBuilder(new URI(callbackUrl))
               .addParameter("recordingmarks", m.haveRecordingMarks() ? "true" : "false")
-              .addParameter("meetingID", m.getExternalId()).build().toURL().toString();
+              .addParameter("meetingID", m.getExternalId()).build().toURL().toString()
+              .addParameter("learningDashboardAccessToken", m.getLearningDashboardAccessToken());
             MeetingEndedEvent event = new MeetingEndedEvent(m.getInternalId(), m.getExternalId(), m.getName(), callbackUrl);
             processMeetingEndedCallback(event);
           } catch (Exception e) {
@@ -1172,7 +1173,7 @@ public class MeetingService implements MessageListener {
         } else if (message instanceof GuestLobbyMessageChanged) {
           processGuestLobbyMessageChanged((GuestLobbyMessageChanged) message);
         } else if (message instanceof PrivateGuestLobbyMessageChanged) {
-          processPrivateGuestLobbyMessageChanged((PrivateGuestLobbyMessageChanged) message); 
+          processPrivateGuestLobbyMessageChanged((PrivateGuestLobbyMessageChanged) message);
         } else if (message instanceof RecordChapterBreak) {
           processRecordingChapterBreak((RecordChapterBreak) message);
         } else if (message instanceof MakePresentationDownloadableMsg) {
