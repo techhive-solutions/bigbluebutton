@@ -11,7 +11,7 @@
   >
     <constructor-arg
       index="0"
-      value="stun:turn.tutorbees.net:443"
+      value="stun:turn.tutorbees.net"
     />
   </bean>
   <bean
