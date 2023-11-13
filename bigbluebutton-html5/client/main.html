@@ -20,7 +20,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-  >
+  />
   <style>
     html {
       box-sizing: border-box;
@@ -35,15 +35,15 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
     body {
       position: fixed;
       height: 100%;
-      font-family: 'Source Sans Pro', Arial, sans-serif;
+      font-family: "Source Sans Pro", Arial, sans-serif;
       font-size: 1rem;
       /* 16px */
-      background-color: #06172A;
+      background-color: #06172a;
     }
 
     /* language-specific font */
     body.lang-fa {
-      font-family: Tahoma, 'Source Sans Pro', Arial, sans-serif;
+      font-family: Tahoma, "Source Sans Pro", Arial, sans-serif;
     }
 
     :-webkit-full-screen {
@@ -103,10 +103,9 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
       color: var(--palette-placeholder-text);
       opacity: 1;
     }
-
   </style>
   <script>
-    document.addEventListener('gesturestart', function (e) {
+    document.addEventListener("gesturestart", function (e) {
       e.preventDefault();
     });
   </script>
@@ -114,10 +113,7 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
     src="compatibility/adapter.js?v=VERSION"
     language="javascript"
   ></script>
-  <script
-    src="compatibility/sip.js?v=VERSION"
-    language="javascript"
-  ></script>
+  <script src="compatibility/sip.js?v=VERSION" language="javascript"></script>
   <script
     src="compatibility/kurento-utils.js?v=VERSION"
     language="javascript"
@@ -188,66 +184,38 @@ with BigBlueButton; if not, see <http://www.gnu.org/licenses/>.
 
   <style>
     @font-face {
-      font-family: 'bbb-icons';
-      src: url('fonts/BbbIcons/bbb-icons.woff?v=VERSION') format('woff');
+      font-family: "bbb-icons";
+      src: url("fonts/BbbIcons/bbb-icons.woff?v=VERSION") format("woff");
       font-weight: normal;
       font-style: normal;
     }
-
   </style>
   <!-- fonts -->
-  <!-- Google Analytics Code -->
-  <script defer>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-97722385-1', 'auto');
-    ga('send', 'pageview');
-  </script>
-  <!-- Google Tag Manager -->
-  <script defer>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NP5S2LF');
-  </script>
-  <!-- End Google Tag Manager -->
 </head>
 
-<body style="background-color: #06172A">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe
-      src="https://www.googletagmanager.com/ns.html?id=GTM-NP5S2LF"
-      height="0"
-      width="0"
-      style="display:none;visibility:hidden"
-      loading='lazy'
-    ></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
+<!-- Google tag (gtag.js) -->
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-JLEN5HGD91"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-JLEN5HGD91");
+</script>
+
+<body style="background-color: #06172a">
   <div
     id="aria-polite-alert"
     aria-live="polite"
     aria-atomic="false"
     class="sr-only"
   ></div>
-  <div
-    id="app"
-    role="document"
-  >
-  </div>
+  <div id="app" role="document"></div>
   <span id="destination"></span>
-  <audio
-    id="remote-media"
-    autoplay
-  >
-  </audio>
+  <audio id="remote-media" autoplay></audio>
 </body>
