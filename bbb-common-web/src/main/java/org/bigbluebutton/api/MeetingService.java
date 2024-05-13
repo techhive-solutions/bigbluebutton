@@ -880,7 +880,7 @@ public class MeetingService implements MessageListener {
           String callbackUrl = metadata.get(endCallbackUrl);
           try {
             callbackUrl = new URIBuilder(new URI(callbackUrl))
-              .addParameter("recordingmarks", m.haveRecordingMarks() ? "true" : "false")
+              .addParameter("recordingmarks", m.getLearningDashboardAccessToken())
               .addParameter("meetingID", m.getExternalId()).build().toURL().toString();
             MeetingEndedEvent event = new MeetingEndedEvent(m.getInternalId(), m.getExternalId(), m.getName(), callbackUrl);
             processMeetingEndedCallback(event);
