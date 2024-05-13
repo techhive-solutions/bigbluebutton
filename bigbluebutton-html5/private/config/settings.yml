@@ -33,6 +33,7 @@ public:
     copyright: '©2024 BigBlueButton Inc.'
     html5ClientBuild: HTML5_CLIENT_VERSION
     helpLink: https://bigbluebutton.org/html5/
+    pushMessageUrl: https://tutorbees.net
     delayForUnmountOfSharedNote: 120000
     bbbTabletApp:
       enabled: true
