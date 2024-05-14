@@ -54,8 +54,9 @@ show_moderator_viewpoint: false
 steps:
   archive: "sanity"
   sanity: "captions"
-  captions: "process:presentation"
-  "process:presentation": "publish:presentation"
+  captions:
+    - "process:video"
+  "process:video": "publish:video"
 
 # For PRODUCTION
 log_dir: /var/log/bigbluebutton
