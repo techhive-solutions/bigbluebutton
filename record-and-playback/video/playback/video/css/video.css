@@ -2,14 +2,14 @@
  * see: yaccessibilityblog.com/library/css-clip-hidden-content.html
  */
 .visually-hidden {
-	position: absolute !important;
-	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-	clip: rect(1px, 1px, 1px, 1px);
-	padding: 0 !important;
-	border: 0 !important;
-	height: 1px !important;
-	width: 1px !important;
-	overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
 }
 
 html {
@@ -28,6 +28,28 @@ header {
   padding: 0 10px;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  margin: 8px 0;
+  background-color: white;
+  border: 2px solid #5d5fef;
+  border-radius: 8px;
+  color: #5d5fef;
+  font-weight: bold;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+button:hover,
+button:active,
+button:focus {
+  background-color: #5d5fef;
+  color: white;
 }
 main {
   -ms-flex: 1 0 16rem;
@@ -95,7 +117,9 @@ header > h1 {
   background-color: white;
   position: absolute;
 }
-.video-js .vjs-current-time, .video-js .vjs-duration, .video-js .vjs-time-divider {
+.video-js .vjs-current-time,
+.video-js .vjs-duration,
+.video-js .vjs-time-divider {
   display: block;
 }
 .video-js .vjs-time-divider {
