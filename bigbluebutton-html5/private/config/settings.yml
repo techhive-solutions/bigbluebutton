@@ -301,7 +301,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://meet.tutorbees.net/bbb-webrtc-sfu
     cameraWsOptions:
       # Valid for video-provider. Time (ms) before its WS connection times out
       # and tries to reconnect.
@@ -650,7 +650,7 @@ public:
     showPushLayoutButton: true
     showPushLayoutToggle: true
   pads:
-    url: ETHERPAD_HOST
+    url: https://meet.tutorbees.net/pad
     cookie:
       path: /
       sameSite: None
@@ -972,7 +972,7 @@ public:
     external:
       enabled: false
       level: info
-      url: https://LOG_HOST/html5Log
+      url: https://meet.tutorbees.net/html5Log
       method: POST
       throttleInterval: 400
       flushOnClose: true
