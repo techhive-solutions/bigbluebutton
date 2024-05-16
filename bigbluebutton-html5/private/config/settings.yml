@@ -8,7 +8,7 @@ public:
     # audio
     autoJoin: true
     # Disables the listen only option in audio modal.
-    listenOnlyMode: true
+    listenOnlyMode: false
     forceListenOnly: false
     # Skips the echo test when connecting with microphone.
     skipCheck: false
@@ -26,31 +26,32 @@ public:
     # "media.setsinkid.enabled" to make it work properly
     # enableDynamicAudioDeviceSelection: true
     #
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
+    clientTitle: TutorBees
+    appName: TutorBees.net
     bbbServerVersion: HTML5_FULL_BBB_VERSION
-    displayBbbServerVersion: true
-    copyright: '©2024 BigBlueButton Inc.'
+    displayBbbServerVersion: false
+    copyright: "©2024 TutorBees.net"
     html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    helpLink: https://support.tutorbees.net/open.php
+    pushMessageUrl: https://tutorbees.net
     delayForUnmountOfSharedNote: 120000
     bbbTabletApp:
       enabled: true
-      iosAppStoreUrl: 'https://apps.apple.com/us/app/bigbluebutton-tablet/id1641156756'
-      iosAppUrlScheme: 'bigbluebutton-tablet'
+      iosAppStoreUrl: "https://apps.apple.com/us/app/bigbluebutton-tablet/id1641156756"
+      iosAppUrlScheme: "bigbluebutton-tablet"
     lockOnJoin: true
-    cdn: ''
-    basename: '/html5client'
+    cdn: ""
+    basename: "/html5client"
     # the base location of the BBB API. If you use a cluster setup with a load
     # balancer which hides the individual nodes, then this should be
     # https://bbb-host/bigbluebutton
     # If you run a traditional setup of multiple nodes behind scalelite and the
     # users see the hostnames of the individual nodes, you can leave this at the
     # default setting
-    bbbWebBase: '/bigbluebutton'
+    bbbWebBase: "/bigbluebutton"
     # If you run a cluster setup with a load balancer which hides the individual
     # nodes, then this should be set to https://bbb-host/learning-analytics-dashboard
-    learningDashboardBase: '/learning-analytics-dashboard'
+    learningDashboardBase: "/learning-analytics-dashboard"
     # Use https URL of CSS file. Example: https://docs.bigbluebutton.org/administration/customize
     customStyleUrl: null
     darkTheme:
@@ -59,7 +60,7 @@ public:
     # the default logoutUrl matches window.location.origin i.e. bigbluebutton.org for demo.bigbluebutton.org
     # in some cases we want only custom logoutUrl to be used when provided on meeting create. Default value: true
     askForConfirmationOnLeave: true
-    wakeLock: 
+    wakeLock:
       enabled: true
     allowDefaultLogoutUrl: true
     allowUserLookup: false
@@ -78,7 +79,7 @@ public:
     enableCameraBrightness: true
     mirrorOwnWebcam: false
     viewersInWebcam: 8
-    ipv4FallbackDomain: ''
+    ipv4FallbackDomain: ""
     allowLogout: true
     allowFullscreen: true
     preloadNextSlides: 2
@@ -88,10 +89,10 @@ public:
     # speech API, which involves sending voice data to third-party servers!
     # https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API#speech_recognition
     audioCaptions:
-      enabled: false
+      enabled: true
       alwaysVisible: false
       # mobile: <Boolean> - controls speech transcription availability on mobile
-      mobile: false
+      mobile: true
       # provider: [webspeech, vosk, gladia]
       provider: webspeech
       language:
@@ -99,20 +100,20 @@ public:
         # Google: https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages
         # Gladia: https://docs-v1.gladia.io/reference/supported-languages
         available:
-        # - ca-ES
-        # - de-DE
+          # - ca-ES
+          # - de-DE
           - en-US
           - es-ES
           - fr-FR
-        # - hi-ID
-        # - it-IT
-        # - ja-JP
+          # - hi-ID
+          # - it-IT
+          # - ja-JP
           - pt-BR
         # - ru-RU
         # - zh-CN
         # If true, automatically uses the below locale field content as transcription language
         # and the language selector in audio modal won't show up!
-        forceLocale: false
+        forceLocale: en-US
         # If true, the default selected value for language selector in audio modal
         # is the below locale field content
         defaultSelectLocale: true
@@ -127,7 +128,7 @@ public:
       threshold: -50
       duration: 4000
     remainingTimeThreshold: 30
-    remainingTimeAlertThresholdArray: [1,5]
+    remainingTimeAlertThresholdArray: [1, 5]
     enableDebugWindow: true
     # Warning: increasing the limit of breakout rooms per meeting
     # can generate excessive overhead to the server. We recommend
@@ -190,7 +191,7 @@ public:
     userSettingsStorage: session
     defaultSettings:
       application:
-        selectedLayout: 'custom'
+        selectedLayout: "custom"
         animations: true
         chatAudioAlerts: false
         chatPushAlerts: false
@@ -300,7 +301,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://meet.tutorbees.net/bbb-webrtc-sfu
     cameraWsOptions:
       # Valid for video-provider. Time (ms) before its WS connection times out
       # and tries to reconnect.
@@ -560,9 +561,9 @@ public:
     dictation: false
     # Default pad which will store automatically generated captions
     defaultPad: en
-    background: '#000000'
+    background: "#000000"
     font:
-      color: '#ffffff'
+      color: "#ffffff"
       family: Calibri
       size: 24px
     # maximum number of simultaneous captions on screen
@@ -625,18 +626,18 @@ public:
     enabled: true
     expire: 60
     reactions:
-      - id: 'smiley'
-        native: '😃'
-      - id: 'neutral_face'
-        native: '😐'
-      - id: 'slightly_frowning_face'
-        native: '🙁'
-      - id: '+1'
-        native: '👍'
-      - id: '-1'
-        native: '👎'
-      - id: 'clap'
-        native: '👏'
+      - id: "smiley"
+        native: "😃"
+      - id: "neutral_face"
+        native: "😐"
+      - id: "slightly_frowning_face"
+        native: "🙁"
+      - id: "+1"
+        native: "👍"
+      - id: "-1"
+        native: "👎"
+      - id: "clap"
+        native: "👏"
   userStatus:
     enabled: false
   notes:
@@ -649,7 +650,7 @@ public:
     showPushLayoutButton: true
     showPushLayoutToggle: true
   pads:
-    url: ETHERPAD_HOST
+    url: https://meet.tutorbees.net/pad
     cookie:
       path: /
       sameSite: None
@@ -687,26 +688,26 @@ public:
         # name:  The name of the bridge
         - name: sipjs
           # path: the bridge file path, relative to /imports/api/audio/client
-          path: 'bridge/sip'
+          path: "bridge/sip"
         - name: fullaudio
-          path: 'bridge/sfu-audio-bridge'
+          path: "bridge/sfu-audio-bridge"
       # Forces a retry with iceTransportPolicy = 'relay' if the first attempt
       # fails with a few selected errors codes (eg 1007, 1010)
       retryThroughRelay: false
-    stunTurnServersFetchAddress: '/bigbluebutton/api/stuns'
+    stunTurnServersFetchAddress: "/bigbluebutton/api/stuns"
     cacheStunTurnServers: true
-    fallbackStunServer: ''
+    fallbackStunServer: ""
     # Forces relay usage on all browsers, environments and media modules.
     # If true, supersedes public.kurento.forceRelayOnFirefox
     forceRelay: false
     # Firefox has a buggy ICE implementation. With mediasoup this leads to
     # connection problems unless all traffic is relayed through a turn server.
     forceRelayOnFirefox: true
-    mediaTag: '#remote-media'
+    mediaTag: "#remote-media"
     callTransferTimeout: 5000
     callHangupTimeout: 2000
     callHangupMaximumRetries: 10
-    echoTestNumber: 'echo'
+    echoTestNumber: "echo"
     listenOnlyCallTimeout: 15000
     # Experimental: enables a new audio mechanism that has a server-side,
     # transparent listen only mode. See issue #14021.
@@ -736,7 +737,7 @@ public:
     # the fqdn of this host.
     # If you run a traditional setup of multiple nodes behind scalelite and the users see the hostnames of the
     # individual nodes, you can leave this at the default setting
-    sip_ws_host: ''
+    sip_ws_host: ""
     # Mute/umute toggle throttle time
     toggleMuteThrottleTime: 300
     #Websocket keepAlive interval (seconds). You may set this to prevent
@@ -750,7 +751,7 @@ public:
     #Trace sip/audio messages in browser. If not set, default value is false.
     traceSip: false
     # SDP semantics: plan-b|unified-plan
-    sdpSemantics: 'unified-plan'
+    sdpSemantics: "unified-plan"
     # localEchoTest:
     #   enabled: Boolean => enables an experimental, simplified echo test mode
     #   initialHearingState: Boolean => whether users should hear themselves firsthand
@@ -815,8 +816,8 @@ public:
     allowSnapshotOfCurrentSlide: true
     panZoomThrottle: 32
     restoreOnUpdate: true
-    uploadEndpoint: '/bigbluebutton/presentation/upload'
-    fileUploadConstraintsHint: false
+    uploadEndpoint: "/bigbluebutton/presentation/upload"
+    fileUploadConstraintsHint: true
     # mirroredFromBBBCore are values controlled in bbb-web properties file. We include a copy here for notification purposes
     mirroredFromBBBCore:
       uploadSizeMax: 30000000
@@ -892,29 +893,29 @@ public:
       multiUserPenOnly: false
       colors:
         - label: black
-          value: '#000000'
+          value: "#000000"
         - label: white
-          value: '#ffffff'
+          value: "#ffffff"
         - label: red
-          value: '#ff0000'
+          value: "#ff0000"
         - label: orange
-          value: '#ff8800'
+          value: "#ff8800"
         - label: eletricLime
-          value: '#ccff00'
+          value: "#ccff00"
         - label: Lime
-          value: '#00ff00'
+          value: "#00ff00"
         - label: Cyan
-          value: '#00ffff'
+          value: "#00ffff"
         - label: dodgerBlue
-          value: '#0088ff'
+          value: "#0088ff"
         - label: blue
-          value: '#0000ff'
+          value: "#0000ff"
         - label: violet
-          value: '#8800ff'
+          value: "#8800ff"
         - label: magenta
-          value: '#ff00ff'
+          value: "#ff00ff"
         - label: silver
-          value: '#c0c0c0'
+          value: "#c0c0c0"
       thickness:
         - value: 14
         - value: 12
@@ -971,11 +972,11 @@ public:
     external:
       enabled: false
       level: info
-      url: https://LOG_HOST/html5Log
+      url: https://meet.tutorbees.net/html5Log
       method: POST
       throttleInterval: 400
       flushOnClose: true
-      logTag: ''
+      logTag: ""
   virtualBackgrounds:
     enabled: true
     enableVirtualBackgroundUpload: true
@@ -997,7 +998,7 @@ private:
     loadSlidesFromHttpAlways: false
   redis:
     host: 127.0.0.1
-    port: '6379'
+    port: "6379"
     timeout: 5000
     password: null
     debug: false
@@ -1055,7 +1056,7 @@ private:
   prometheus:
     enabled: false
     # Metrics endpoint path
-    path: '/metrics'
+    path: "/metrics"
     # Whether default metrics for Node.js processes should be exported
     collectDefaultMetrics: false
     # Whether redis metrics should be exported

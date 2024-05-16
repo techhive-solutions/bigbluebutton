@@ -52,12 +52,21 @@ nowebcam_layout:
       height: 720
       pad: true
 formats:
-  - mimetype: 'video/mp4'
+  - mimetype: "video/mp4"
     extension: m4v
     parameters:
-      - [ '-c:v', 'copy', # Use working format codec defined in core/lib/recordandplayback/edl/video.rb
-          '-c:a', 'aac', '-b:a', '128K',
-          '-f', 'mp4', '-movflags', 'faststart' ]
+      - [
+          "-c:v",
+          "copy", # Use working format codec defined in core/lib/recordandplayback/edl/video.rb
+          "-c:a",
+          "aac",
+          "-b:a",
+          "128K",
+          "-f",
+          "mp4",
+          "-movflags",
+          "faststart",
+        ]
     postprocess: []
   #- mimetype: 'video/webm;codecs="vp09.00.41.08,opus"'
   #  extension: webm

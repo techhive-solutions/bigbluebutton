@@ -1,4 +1,4 @@
-bbb_version: '2.6.1'
+bbb_version: "2.6.1"
 raw_audio_src: /var/freeswitch/meetings
 kurento_video_src: /var/kurento/recordings
 kurento_screenshare_src: /var/kurento/screenshare
@@ -54,8 +54,9 @@ show_moderator_viewpoint: false
 steps:
   archive: "sanity"
   sanity: "captions"
-  captions: "process:presentation"
-  "process:presentation": "publish:presentation"
+  captions:
+    - "process:video"
+  "process:video": "publish:video"
 
 # For PRODUCTION
 log_dir: /var/log/bigbluebutton
@@ -63,9 +64,8 @@ events_dir: /var/bigbluebutton/events
 recording_dir: /var/bigbluebutton/recording
 published_dir: /var/bigbluebutton/published
 captions_dir: /var/bigbluebutton/captions
-playback_host: 127.0.0.1
+playback_host: meet.tutorbees.net
 playback_protocol: http
-
 # For DEVELOPMENT
 # This allows us to run the scripts manually
 #scripts_dir: /home/ubuntu/dev/bigbluebutton/record-and-playback/core/scripts
