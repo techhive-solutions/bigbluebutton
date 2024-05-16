@@ -91,10 +91,10 @@ Popcorn(function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const video = document.getElementById("video");
-  const h1 = document.getElementById("h1");
-  document.addEventListener("button", function () {
-    const a = document.getElementById("a");
+  const video = document.querySelector("video");
+  const h1 = document.querySelector("h1");
+  document.querySelector("button").addEventListener("click", function () {
+    const a = document.createElement("a");
     a.href = video.src;
     a.download = `recording-${h1.innerText}.mv4`;
     document.body.appendChild(a);
