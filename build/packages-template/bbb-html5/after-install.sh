@@ -29,7 +29,7 @@ TARGET=/usr/share/meteor/bundle/programs/server/assets/app/config/settings.yml
 
   yq w -i $TARGET public.pads.url                    "$PROTOCOL://$HOST/pad"
 
-  sed -i "s/proxy_pass .*/proxy_pass http:\/\/$IP:5066;/g" /usr/share/bigbluebutton/nginx/sip.nginx
+  sed -i "s/proxy_pass .*/proxy_pass https:\/\/$IP:7443;/g" /usr/share/bigbluebutton/nginx/sip.nginx
   sed -i "s/server_name  .*/server_name  $IP;/g" /etc/nginx/sites-available/bigbluebutton
 
   chmod 600 $TARGET
