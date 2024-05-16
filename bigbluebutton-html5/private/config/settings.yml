@@ -92,7 +92,7 @@ public:
       enabled: true
       alwaysVisible: false
       # mobile: <Boolean> - controls speech transcription availability on mobile
-      mobile: false
+      mobile: true
       # provider: [webspeech, vosk, gladia]
       provider: webspeech
       language:
@@ -113,7 +113,7 @@ public:
         # - zh-CN
         # If true, automatically uses the below locale field content as transcription language
         # and the language selector in audio modal won't show up!
-        forceLocale: false
+        forceLocale: en-US
         # If true, the default selected value for language selector in audio modal
         # is the below locale field content
         defaultSelectLocale: true
