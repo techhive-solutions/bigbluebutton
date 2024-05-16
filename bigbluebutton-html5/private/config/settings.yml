@@ -7,8 +7,8 @@ public:
     # user to select an option ("Microphone" and/or "Listen only") for joining
     # audio
     autoJoin: true
-    # Set to false disables the listen only option in audio modal.
-    listenOnlyMode: true
+    # Disables the listen only option in audio modal.
+    listenOnlyMode: false
     forceListenOnly: false
     # Skips the echo test when connecting with microphone.
     skipCheck: false
@@ -27,30 +27,31 @@ public:
     enableDynamicAudioDeviceSelection: true
     #
     skipEchoTestIfPreviousDevice: false
-    clientTitle: BigBlueButton
-    appName: BigBlueButton HTML5 Client
+    clientTitle: TutorBees
+    appName: TutorBees.net
     bbbServerVersion: HTML5_FULL_BBB_VERSION
-    displayBbbServerVersion: true
-    copyright: '©2026 BigBlueButton Inc.'
+    displayBbbServerVersion: false
+    copyright: "©2026 TutorBees.net"
     html5ClientBuild: HTML5_CLIENT_VERSION
-    helpLink: https://bigbluebutton.org/html5/
+    helpLink: https://support.tutorbees.net/open.php
+    pushMessageUrl: https://tutorbees.net
     delayForUnmountOfSharedNote: 120000
     bbbTabletApp:
       enabled: true
-      iosAppStoreUrl: 'https://apps.apple.com/us/app/bigbluebutton-tablet/id1641156756'
-      iosAppUrlScheme: 'bigbluebutton-tablet'
-    cdn: ''
-    basename: '/html5client'
+      iosAppStoreUrl: "https://apps.apple.com/us/app/bigbluebutton-tablet/id1641156756"
+      iosAppUrlScheme: "bigbluebutton-tablet"
+    cdn: ""
+    basename: "/html5client"
     # the base location of the BBB API. If you use a cluster setup with a load
     # balancer which hides the individual nodes, then this should be
     # https://bbb-host/bigbluebutton
     # If you run a traditional setup of multiple nodes behind scalelite and the
     # users see the hostnames of the individual nodes, you can leave this at the
     # default setting
-    bbbWebBase: '/bigbluebutton'
+    bbbWebBase: "/bigbluebutton"
     # If you run a cluster setup with a load balancer which hides the individual
     # nodes, then this should be set to https://bbb-host/learning-analytics-dashboard
-    learningDashboardBase: '/learning-analytics-dashboard'
+    learningDashboardBase: "/learning-analytics-dashboard"
     # Use https URL of CSS file. Example: https://docs.bigbluebutton.org/administration/customize
     customStyleUrl: null
     darkTheme:
@@ -77,7 +78,7 @@ public:
     enableCameraBrightness: true
     mirrorOwnWebcam: true
     viewersInWebcam: 8
-    ipv4FallbackDomain: ''
+    ipv4FallbackDomain: ""
     allowLogout: true
     allowFullscreen: true
     preloadNextSlides: 2
@@ -92,10 +93,10 @@ public:
     # speech API, which involves sending voice data to third-party servers!
     # https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API#speech_recognition
     audioCaptions:
-      enabled: false
+      enabled: true
       alwaysVisible: false
       # mobile: <Boolean> - controls speech transcription availability on mobile
-      mobile: false
+      mobile: true
       # provider: [webspeech, vosk, gladia]
       provider: webspeech
       language:
@@ -103,19 +104,19 @@ public:
         # Google: https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages
         # Gladia: https://docs.gladia.io/chapters/speech-to-text-api/pages/languages#supported-languages
         available:
-        # - de-DE
+          # - de-DE
           - en-US
           - es-ES
           - fr-FR
-        # - hi-IN
-        # - it-IT
-        # - ja-JP
+          # - hi-IN
+          # - it-IT
+          # - ja-JP
           - pt-BR
         # - ru-RU
         # - zh-CN
         # If true, automatically uses the below locale field content as transcription language
         # and the language selector in audio modal won't show up!
-        forceLocale: false
+        forceLocale: en-US
         # If true, the default selected value for language selector in audio modal
         # is the below locale field content
         defaultSelectLocale: true
@@ -130,7 +131,7 @@ public:
       threshold: -50
       duration: 4000
     remainingTimeThreshold: 30
-    remainingTimeAlertThresholdArray: [1,5]
+    remainingTimeAlertThresholdArray: [1, 5]
     enableDebugWindow: true
     # Warning: increasing the limit of breakout rooms per meeting
     # can generate excessive overhead to the server. We recommend
@@ -186,7 +187,7 @@ public:
     userSettingsStorage: session
     defaultSettings:
       application:
-        selectedLayout: 'custom'
+        selectedLayout: "custom"
         pushLayout: false
         animations: true
         chatAudioAlerts: false
@@ -307,10 +308,10 @@ public:
     # Timeout before automatically redirecting users to the logout URL (or closing the window if the session is
     # a breakout room). Either a number (in miliseconds) or null.
     timeoutBeforeRedirectOnMeetingEnd: 20000
-  # plugins:
-  #   - name: SamplePresentationToolbarPlugin
-  #     url: https://<your-Host>/plugins/SamplePresentationToolbarPlugin.js
-  # Allowed errors to be shown on notifications bar
+    # plugins:
+    #   - name: SamplePresentationToolbarPlugin
+    #     url: https://<your-Host>/plugins/SamplePresentationToolbarPlugin.js
+    # Allowed errors to be shown on notifications bar
     showConnectionErrors:
       # - 3001
       - 3002
@@ -321,7 +322,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://meet.muhammadkhan.dev/bbb-webrtc-sfu
     cameraWsOptions:
       # Valid for video-provider. Time (ms) before its WS connection times out
       # and tries to reconnect.
@@ -609,9 +610,9 @@ public:
     enabled: true
     id: captions
     dictation: false
-    background: '#000000'
+    background: "#000000"
     font:
-      color: '#ffffff'
+      color: "#ffffff"
       family: Calibri
       size: 24px
     # maximum number of simultaneous captions on screen
@@ -798,24 +799,24 @@ public:
     markdownImageAllowed: false
     # available options for toolbar: reply, edit, delete, reactions
     # example: ['reply', 'delete']
-    toolbar: ['reply', 'delete', 'edit', 'reactions']
+    toolbar: ["reply", "delete", "edit", "reactions"]
     announcePresenterChangeInChat: true
   userReaction:
     enabled: true
     expire: 30
     reactions:
-      - id: 'smiley'
-        native: '😃'
-      - id: 'neutral_face'
-        native: '😐'
-      - id: 'slightly_frowning_face'
-        native: '🙁'
-      - id: '-1'
-        native: '👎'
-      - id: '+1'
-        native: '👍'
-      - id: 'clap'
-        native: '👏'
+      - id: "smiley"
+        native: "😃"
+      - id: "neutral_face"
+        native: "😐"
+      - id: "slightly_frowning_face"
+        native: "🙁"
+      - id: "-1"
+        native: "👎"
+      - id: "+1"
+        native: "👍"
+      - id: "clap"
+        native: "👏"
   notes:
     enabled: true
     id: notes
@@ -831,7 +832,7 @@ public:
     # if false, the user can't change the layout (no layout selection modal)
     enableDeprecatedLayoutSelection: true
   pads:
-    url: ETHERPAD_HOST
+    url: https://meet.muhammadkhan.dev/pad
   media:
     audio:
       # defaultFullAudioBridge: bridge to be used by full audio mechanism.
@@ -846,27 +847,41 @@ public:
       # defaultListenOnlyBridge: bridge to be used by listen only mechanism.
       # Deprecated, no alternative as this audio mode will be removed.
       defaultListenOnlyBridge: fullaudio
-      # retryThroughRelay: forces a retry with iceTransportPolicy = 'relay'
-      # if the first attempt fails with selected errors codes (eg 1007, 1010)
+      #
+      #
+      # Bridge array, here's where we list our bridges.
+      # To add new bridges, simply add the corresponding .js file in
+      # /imports/api/audio/client/bridge/ and add it to this list.
+      #
+      # Each bridge in this list, must have a name and path attribute.
+      # The name is the desired name/string you can set for your bridge, while
+      # the path specifies the file path, relative to
+      # '/imports/api/audio/client' dir.
+      #
+      bridges:
+        # name:  The name of the bridge
+        - name: sipjs
+          # path: the bridge file path, relative to /imports/api/audio/client
+          path: "bridge/sip"
+        - name: fullaudio
+          path: "bridge/sfu-audio-bridge"
+      # Forces a retry with iceTransportPolicy = 'relay' if the first attempt
+      # fails with a few selected errors codes (eg 1007, 1010)
       retryThroughRelay: false
-      # allowAudioJoinCancel: allow users to cancel audio join requests by
-      # by closing the audio modal while audio is being negotiated.
-      # If false, the audio modal will be locked until the process finishes.
-      allowAudioJoinCancel: true
-    stunTurnServersFetchAddress: '/bigbluebutton/api/stuns'
+    stunTurnServersFetchAddress: "/bigbluebutton/api/stuns"
     cacheStunTurnServers: true
-    fallbackStunServer: ''
+    fallbackStunServer: ""
     # Forces relay usage on all browsers, environments and media modules.
     # If true, supersedes public.kurento.forceRelayOnFirefox
     forceRelay: false
     # Firefox has a buggy ICE implementation. With mediasoup this leads to
     # connection problems unless all traffic is relayed through a turn server.
     forceRelayOnFirefox: true
-    mediaTag: '#remote-media'
+    mediaTag: "#remote-media"
     callTransferTimeout: 5000
     callHangupTimeout: 2000
     callHangupMaximumRetries: 10
-    echoTestNumber: 'echo'
+    echoTestNumber: "echo"
     listenOnlyCallTimeout: 15000
     # skipInitialCamEnumeration: whether to skip the initial camera enumeration
     # See https://github.com/bigbluebutton/bigbluebutton/issues/21746
@@ -904,7 +919,7 @@ public:
     # the fqdn of this host.
     # If you run a traditional setup of multiple nodes behind scalelite and the users see the hostnames of the
     # individual nodes, you can leave this at the default setting
-    sip_ws_host: ''
+    sip_ws_host: ""
     # Mute/umute toggle throttle time
     toggleMuteThrottleTime: 300
     #Websocket keepAlive interval (seconds). You may set this to prevent
@@ -918,7 +933,7 @@ public:
     #Trace sip/audio messages in browser. If not set, default value is false.
     traceSip: false
     # SDP semantics: plan-b|unified-plan
-    sdpSemantics: 'unified-plan'
+    sdpSemantics: "unified-plan"
     # localEchoTest:
     #   enabled: Boolean => enables an experimental, simplified echo test mode
     #   initialHearingState: Boolean => whether users should hear themselves firsthand
@@ -956,7 +971,7 @@ public:
     # Index is the error code:
     #   - 1136: permission denied
     screenshareTroubleshootingLinks:
-      1136: 'https://support.bigbluebutton.org/hc/en-us/articles/1500005316582-Share-my-screen#:~:text=Error%201136%3A%20Permission%20to%20capture,able%20to%20screen%20share%20again'
+      1136: "https://support.bigbluebutton.org/hc/en-us/articles/1500005316582-Share-my-screen#:~:text=Error%201136%3A%20Permission%20to%20capture,able%20to%20screen%20share%20again"
     livekit:
       # livekit.url is the URL of the LiveKit server. Default value is 'wss://{window.location.hostname}/livekit'
       #url: wss://LIVEKIT_HOST/livekit
@@ -979,17 +994,17 @@ public:
         publishOptions:
           audioPreset:
             maxBitrate: 48000
-            networkPriority: 'high'
-            priority: 'high'
+            networkPriority: "high"
+            priority: "high"
           dtx: false
           red: true
           forceStereo: false
       camera:
         publishOptions:
-          videoCodec: 'vp8'
+          videoCodec: "vp8"
       screenshare:
         publishOptions:
-          videoCodec: 'vp8'
+          videoCodec: "vp8"
   stats:
     enabled: true
     interval: 10000
@@ -1014,8 +1029,8 @@ public:
     allowSnapshotOfCurrentSlide: true
     panZoomThrottle: 32
     restoreOnUpdate: true
-    uploadEndpoint: '/bigbluebutton/presentation/upload'
-    fileUploadConstraintsHint: false
+    uploadEndpoint: "/bigbluebutton/presentation/upload"
+    fileUploadConstraintsHint: true
     # mirroredFromBBBCore are values controlled in bbb-web properties file. We include a copy here for notification purposes
     mirroredFromBBBCore:
       uploadSizeMax: 30000000
@@ -1088,15 +1103,15 @@ public:
         end: DRAW_END
     styles:
       # color is one of 'black', 'blue', 'green', 'grey', 'light-blue', 'light-green', 'light-red', 'light-violet', 'orange', 'red', 'violet', 'yellow'
-      colorStyle: 'black'
+      colorStyle: "black"
       # dash is one of 'dashed', 'dotted', 'draw', 'solid'
-      dashStyle: 'draw'
+      dashStyle: "draw"
       # fill is one of 'none', 'pattern', 'semi', 'solid'
-      fillStyle: 'none'
+      fillStyle: "none"
       # font is one of 'draw','mono','sans', 'serif'
-      fontStyle: 'draw'
+      fontStyle: "draw"
       # size is one of 'l', 'm', 's', 'xl'
-      sizeStyle: 'm'
+      sizeStyle: "m"
 
       # this one is obsoleted now
       text:
@@ -1105,7 +1120,62 @@ public:
         family: script
     toolbar:
       multiUserPenOnly: false
-      initialSelectedTool: draw
+      colors:
+        - label: black
+          value: "#000000"
+        - label: white
+          value: "#ffffff"
+        - label: red
+          value: "#ff0000"
+        - label: orange
+          value: "#ff8800"
+        - label: eletricLime
+          value: "#ccff00"
+        - label: Lime
+          value: "#00ff00"
+        - label: Cyan
+          value: "#00ffff"
+        - label: dodgerBlue
+          value: "#0088ff"
+        - label: blue
+          value: "#0000ff"
+        - label: violet
+          value: "#8800ff"
+        - label: magenta
+          value: "#ff00ff"
+        - label: silver
+          value: "#c0c0c0"
+      thickness:
+        - value: 14
+        - value: 12
+        - value: 10
+        - value: 8
+        - value: 6
+        - value: 4
+        - value: 2
+        - value: 1
+      font_sizes:
+        - value: 36
+        - value: 32
+        - value: 28
+        - value: 24
+        - value: 20
+        - value: 16
+      tools:
+        - icon: text_tool
+          value: text
+        - icon: line_tool
+          value: line
+        - icon: circle_tool
+          value: ellipse
+        - icon: triangle_tool
+          value: triangle
+        - icon: rectangle_tool
+          value: rectangle
+        - icon: pen_tool
+          value: pencil
+        - icon: hand
+          value: hand
       presenterTools:
         - select
         - hand
@@ -1166,7 +1236,44 @@ public:
         - arrow-right
         - line
         - frame
-    locales: ['ar', 'ca', 'cs', 'da', 'de', 'en', 'es', 'fa', 'fi', 'fr', 'gl', 'he', 'hi-in', 'hu', 'it', 'ja', 'ko-kr', 'ku', 'main', 'my', 'ne', 'no', 'pl', 'pt-br', 'pt-pt', 'ro', 'ru', 'sv', 'te', 'th', 'tr', 'uk', 'vi', 'zh-cn', 'zh-tw']
+    locales:
+      [
+        "ar",
+        "ca",
+        "cs",
+        "da",
+        "de",
+        "en",
+        "es",
+        "fa",
+        "fi",
+        "fr",
+        "gl",
+        "he",
+        "hi-in",
+        "hu",
+        "it",
+        "ja",
+        "ko-kr",
+        "ku",
+        "main",
+        "my",
+        "ne",
+        "no",
+        "pl",
+        "pt-br",
+        "pt-pt",
+        "ro",
+        "ru",
+        "sv",
+        "te",
+        "th",
+        "tr",
+        "uk",
+        "vi",
+        "zh-cn",
+        "zh-tw",
+      ]
   clientLog:
     console:
       enableRuntimeErrorLogging: false
@@ -1175,11 +1282,11 @@ public:
     external:
       enabled: false
       level: info
-      url: https://LOG_HOST/html5Log
+      url: https://meet.muhammadkhan.dev/html5Log
       method: POST
       throttleInterval: 400
       flushOnClose: true
-      logTag: ''
+      logTag: ""
   virtualBackgrounds:
     enabled: true
     enableVirtualBackgroundUpload: true
@@ -1202,11 +1309,66 @@ private:
     localesUrl: /locale-list
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
+  redis:
+    host: 127.0.0.1
+    port: "6379"
+    timeout: 5000
+    password: null
+    debug: false
+    metrics:
+      queueMetrics: false
+      metricsDumpIntervalMs: 60000
+      metricsFolderPath: METRICS_FOLDER
+      removeMeetingOnEnd: true
+    channels:
+      toAkkaApps: to-akka-apps-redis-channel
+      toThirdParty: to-third-party-redis-channel
+    subscribeTo:
+      - to-html5-redis-channel
+      - from-akka-apps-[^f]*
+      - from-third-party-redis-channel
+    async:
+      - from-akka-apps-wb-redis-channel
+    ignored:
+      - CheckAlivePongSysMsg
+      - DoLatencyTracerMsg
+  serverLog:
+    level: info
+    streamerLog: false
+    includeServerInfo: true
+    healthChecker:
+      enable: true
+      intervalMs: 30000
+  minBrowserVersions:
+    - browser: chrome
+      version: 72
+    - browser: chromeMobileIOS
+      version: 94
+    - browser: firefox
+      version: 68
+    - browser: firefoxMobile
+      version: 68
+    - browser: edge
+      version: 79
+    - browser: ie
+      version: Infinity
+    - browser: safari
+      version: [13, 1]
+    - browser: mobileSafari
+      version: [13, 4]
+    - browser: opera
+      version: 50
+    - browser: electron
+      version: [0, 36]
+    - browser: SamsungInternet
+      version: 10
+    - browser: YandexBrowser
+      version: 19
   # Direct Prometheus instrumentation.
   # EXPERIMENTAL, so disabled by default.
   prometheus:
     enabled: false
     # Metrics endpoint path
-    path: '/metrics'
+    path: "/metrics"
     # Whether default metrics for Node.js processes should be exported
     collectDefaultMetrics: false

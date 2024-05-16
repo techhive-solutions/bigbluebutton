@@ -1,4 +1,4 @@
-bbb_version: '3.0.17'
+bbb_version: "3.0.17"
 raw_audio_src: /var/freeswitch/meetings
 mediasoup_video_src: /var/mediasoup/recordings
 mediasoup_screenshare_src: /var/mediasoup/screenshare
@@ -58,8 +58,9 @@ video_compositing_parallel_workers: 2
 steps:
   archive: "sanity"
   sanity: "captions"
-  captions: "process:presentation"
-  "process:presentation": "publish:presentation"
+  captions:
+    - "process:video"
+  "process:video": "publish:video"
 
 # For PRODUCTION
 log_dir: /var/log/bigbluebutton
@@ -67,7 +68,7 @@ events_dir: /var/bigbluebutton/events
 recording_dir: /var/bigbluebutton/recording
 published_dir: /var/bigbluebutton/published
 captions_dir: /var/bigbluebutton/captions
-playback_host: 127.0.0.1
+playback_host: meet.muhammadkhan.dev
 playback_protocol: https
 
 # For DEVELOPMENT

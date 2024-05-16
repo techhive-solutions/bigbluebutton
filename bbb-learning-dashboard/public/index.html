@@ -5,11 +5,27 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Dashboard with BigBlueButton meeting activities" />
-    <base href="%PUBLIC_URL%/">
+    <meta
+      name="description"
+      content="Dashboard with TutorBees.net WhiteBoard meeting activities"
+    />
+    <base href="%PUBLIC_URL%/" />
     <title>Learning Dashboard</title>
   </head>
   <body>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-JLEN5HGD91"
+    ></script>
+    <script async>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-JLEN5HGD91");
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div class="bg-gray-50" id="root"></div>
     <div id="modal-container"></div>
