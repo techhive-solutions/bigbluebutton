@@ -20,7 +20,7 @@ yq e -i ".public.kurento.wsUrl = \"$WSURL/bbb-webrtc-sfu\"" $BBB_HTML5_SETTINGS_
 
 yq e -i  ".public.pads.url = \"$PROTOCOL://$HOST/pad\"" $BBB_HTML5_SETTINGS_FILE
 
-sed -i "s/proxy_pass .*/proxy_pass http:\/\/$IP:5066;/g" /usr/share/bigbluebutton/nginx/sip.nginx
+sed -i "s/proxy_pass .*/proxy_pass https:\/\/$IP:7443;/g" /usr/share/bigbluebutton/nginx/sip.nginx
 sed -i "s/server_name  .*/server_name  $IP;/g" /etc/nginx/sites-available/bigbluebutton
 
 # set full BBB version in settings.yml so it can be displayed in the client
@@ -30,13 +30,13 @@ if [ -f $BBB_RELEASE_FILE ] && [ -f $BBB_HTML5_SETTINGS_FILE ]; then
   yq e -i ".public.app.bbbServerVersion = \"$BBB_FULL_VERSION\"" $BBB_HTML5_SETTINGS_FILE
 fi
 
-# Remove old overrides 
+# Remove old overrides
 if [ -f /etc/systemd/system/mongod.service.d/override-mongo.conf ] \
   || [ -f /etc/systemd/system/mongod.service.d/override.conf ] \
   || [ -f /usr/lib/systemd/system/mongod.service.d/mongod-service-override.conf ] ; then
   rm -f /etc/systemd/system/mongod.service.d/override-mongo.conf
   rm -f /etc/systemd/system/mongod.service.d/override.conf
-  rm -f /usr/lib/systemd/system/mongod.service.d/mongod-service-override.conf 
+  rm -f /usr/lib/systemd/system/mongod.service.d/mongod-service-override.conf
   systemctl daemon-reload
 fi
 
