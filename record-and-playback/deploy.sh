@@ -50,7 +50,7 @@ function deploy_format() {
 	done
 }
 
-deploy_format "video"
+deploy_format "presentation video"
 
 CAPTIONS_DIR=/var/bigbluebutton/captions/
 if [ ! -d "$CAPTIONS_DIR" ]; then
