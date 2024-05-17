@@ -59,7 +59,9 @@ steps:
   archive: "sanity"
   sanity: "captions"
   captions:
+    - "process:presentation"
     - "process:video"
+  "process:presentation": "publish:presentation"
   "process:video": "publish:video"
 
 # For PRODUCTION
