@@ -67,7 +67,7 @@ recording_dir: /var/bigbluebutton/recording
 published_dir: /var/bigbluebutton/published
 captions_dir: /var/bigbluebutton/captions
 playback_host: meet.tutorbees.net
-playback_protocol: http
+playback_protocol: https
 # For DEVELOPMENT
 # This allows us to run the scripts manually
 #scripts_dir: /home/ubuntu/dev/bigbluebutton/record-and-playback/core/scripts
