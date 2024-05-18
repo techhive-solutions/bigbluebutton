@@ -79,7 +79,7 @@ unless FileTest.directory?(target_dir)
     metadata_xml = File.new("#{target_dir}/metadata.xml", 'w')
     metadata_xml.write(metaxml)
     metadata_xml.close
-    BigBlueButton.logger.info('Created inital metadata.xml')
+    BigBlueButton.logger.info('Created initial metadata.xml')
 
     BigBlueButton::AudioProcessor.process(raw_archive_dir, "#{target_dir}/audio")
     events_xml = "#{raw_archive_dir}/events.xml"
@@ -127,6 +127,46 @@ unless FileTest.directory?(target_dir)
 
     participants = recording.at_xpath('participants')
     participants.content = BigBlueButton::Events.get_num_participants(@doc)
+
+    BigBlueButton::Events.get_participants(@doc).each do |data|
+      participant = Nokogiri::XML::Node.new 'participant', @doc
+
+      userId = Nokogiri::XML::Node.new 'userId', @doc
+      userId.content = data[:userId]
+
+      name = Nokogiri::XML::Node.new 'name', @doc
+      name.content = data[:name]
+
+      role = Nokogiri::XML::Node.new 'role', @doc
+      role.content = data[:role]
+
+      timestampUTC = Nokogiri::XML::Node.new 'timestampUTC', @doc
+      timestampUTC.content = data[:timestampUTC]
+
+      participant.add_child(userId)
+      participant.add_child(name)
+      participant.add_child(role)
+      participant.add_child(timestampUTC)
+      recording.add_child(participant)
+    end
+
+    BigBlueButton::Events.get_participant_talking(@doc).each do |data|
+      event = Nokogiri::XML::Node.new 'talkingEvent', @doc
+
+      userId = Nokogiri::XML::Node.new 'userId', @doc
+      userId.content = data[:userId]
+
+      timestampUTC = Nokogiri::XML::Node.new 'timestampUTC', @doc
+      timestampUTC.content = data[:timestampUTC]
+
+      talking = Nokogiri::XML::Node.new 'talking', @doc
+      talking.content = data[:talking]
+
+      event.add_child(userId)
+      event.add_child(timestampUTC)
+      event.add_child(talking)
+      recording.add_child(event)
+    end
 
     ## Remove empty meta
     ## TODO: Clarify reasoning behind creating an empty node to then remove it

@@ -34,14 +34,41 @@ module BigBlueButton
       participants_ids = Set.new
 
       events.xpath("/recording/event[@eventname='ParticipantJoinEvent']").each do |joinEvent|
-         userId = joinEvent.at_xpath("userId").text
+        userId = joinEvent.at_xpath("userId").text
 
-         #removing "_N" at the end of userId
-         userId.gsub!(/_\d*$/, "")
+        #removing "_N" at the end of userId
+        userId.gsub!(/_\d*$/, "")
 
-         participants_ids.add(userId)
+        participants_ids.add(userId)
       end
       participants_ids.length
+    end
+
+    # Get the total participants data
+    def self.get_participants(events)
+      participants = []
+      events.xpath("/recording/event[@eventname='ParticipantJoinEvent']").each do |event|
+        participants << {
+          name: event.at_xpath('name').text,
+          role: event.at_xpath('role').text,
+          timestampUTC: event.at_xpath('timestampUTC').text,
+          userId: event.at_xpath('userId').text,
+        }
+      end
+      participants
+    end
+
+    # Get participant talking events
+    def self.get_participant_talking(events)
+      talking_events = []
+      events.xpath("/recording/event[@eventname='ParticipantTalkingEvent']").each do |event|
+        talking_events << {
+          userId: event.at_xpath('participant').text,
+          timestampUTC: event.at_xpath('timestampUTC').text,
+          talking: event.at_xpath('talking').text,
+        }
+      end
+      talking_events
     end
 
     # Get the meeting metadata
@@ -143,7 +170,7 @@ module BigBlueButton
     end
 
     def self.process_webcamsOnlyForModerator(list_user_info, active_videos, inactive_videos, webcamsOnlyForModerator)
-      
+
       if webcamsOnlyForModerator
         list_user_info.each do |user_id, user_role|
           # If the user is a viewer:
@@ -157,7 +184,7 @@ module BigBlueButton
         end
       else
         # If the WebcamsOnlyForModerator is false, all previously inactive videos will become active
-        inactive_videos.each do |filename| 
+        inactive_videos.each do |filename|
           active_videos << filename
         end
         inactive_videos.clear
@@ -199,13 +226,13 @@ module BigBlueButton
             filename = "#{video_dir}/#{File.basename(uri)}"
           end
           raise "Couldn't determine webcam filename" if filename.nil?
-  
+
           # Add the video to the EDL
           case event['eventname']
           when 'StartWebcamShareEvent', 'StartWebRTCShareEvent'
             videos[filename] = { :timestamp => timestamp }
             active_videos << filename
-  
+
             edl_entry = {
               :timestamp => timestamp,
               :areas => { :webcam => [] }
@@ -219,7 +246,7 @@ module BigBlueButton
             video_edl << edl_entry
           when 'StopWebcamShareEvent', 'StopWebRTCShareEvent'
             active_videos.delete(filename)
-  
+
             edl_entry = {
               :timestamp => timestamp,
               :areas => { :webcam => [] }
@@ -254,7 +281,7 @@ module BigBlueButton
             is_in_forbidden_period = webcamsOnlyForModerator
 
             if (!is_in_forbidden_period) || (is_in_forbidden_period && BigBlueButton::Events.is_user_moderator(userId, list_user_info))
-              
+
               videos[filename] = { :timestamp => timestamp }
               active_videos << filename
 
@@ -306,7 +333,7 @@ module BigBlueButton
             userId = ""
             filename_to_add = ""
 
-            if event.at_xpath('status').text == "role" 
+            if event.at_xpath('status').text == "role"
               userId = event.at_xpath('userId').text
 
               if is_in_forbidden_period && event.at_xpath('value').text == "MODERATOR"
@@ -364,7 +391,7 @@ module BigBlueButton
 
             # Change active and inactive videos.
             BigBlueButton::Events.process_webcamsOnlyForModerator(list_user_info, active_videos, inactive_videos, webcamsOnlyForModerator)
-            
+
             edl_entry = {
               :timestamp => timestamp,
               :areas => { :webcam => [] }
