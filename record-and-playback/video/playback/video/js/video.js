@@ -90,21 +90,33 @@ Popcorn(function () {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
+  const openConfirmation = document.querySelector("button#open-confirmation");
   const video = document.querySelector("video");
   const h1 = document.querySelector("h1");
-  const dialog = document.querySelector("dialog");
-  const downloadLink = document.querySelector("a.download");
+  const confirmationModal = document.querySelector("dialog#confirmation-modal");
+  const downloadingModal = document.querySelector("dialog#downloading-modal");
 
-  document
-    .querySelector("button.download")
-    .addEventListener("click", function () {
-      downloadLink.href = video.src;
-      downloadLink.download = `recording-${h1.innerText}.mp4`;
-      downloadLink.click();
-      dialog.showModal();
-    });
-  document.querySelector("button#close").addEventListener("click", function () {
-    dialog.close();
+  openConfirmation.addEventListener("click", () =>
+    confirmationModal.showModal()
+  );
+
+  document.querySelector("button#confirm").addEventListener("click", () => {
+    const downloadLink = document.createElement("a");
+    downloadLink.href = video.src;
+    downloadLink.download = `recording-${h1.innerText}.mp4`;
+    confirmationModal.close();
+    downloadingModal.showModal();
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
   });
+  document
+    .querySelector("button#cancel")
+    .addEventListener("click", () => confirmationModal.close());
+  document
+    .querySelectorAll("button.close")
+    .forEach((button) =>
+      button.addEventListener("click", () => button.parentElement.close())
+    );
 });

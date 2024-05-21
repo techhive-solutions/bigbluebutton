@@ -40,7 +40,7 @@ header {
   display: flex;
   justify-content: space-between;
 }
-.download {
+button {
   margin: 8px 0;
   background-color: white;
   border: 2px solid #5d5fef;
@@ -48,15 +48,17 @@ header {
   color: #5d5fef;
   font-weight: bold;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 8px;
   align-items: center;
   padding: 4px 8px;
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
 }
-.download:hover,
-.download:active,
-.download:focus {
+button:hover,
+button:active,
+button:focus {
   background-color: #5d5fef;
   color: white;
 }
@@ -217,4 +219,28 @@ dialog > button {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+}
+.button-group > button {
+  flex: 1;
+}
+
+.text-primary {
+  color: #5d5fef;
+}
+
+button.close {
+  color: inherit;
+  transition: color 0.2s;
+}
+
+button.close:hover,
+button.close:active,
+button.close:focus {
+  color: #5d5fef;
+  background-color: transparent;
 }
