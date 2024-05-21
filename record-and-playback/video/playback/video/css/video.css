@@ -14,7 +14,16 @@
 
 html {
   height: 100%;
+  color: #212529;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
 }
+
+h1,
+h2 {
+  font-weight: 600;
+}
+
 body {
   display: -ms-flexbox;
   display: flex;
@@ -31,7 +40,7 @@ header {
   display: flex;
   justify-content: space-between;
 }
-button {
+.download {
   margin: 8px 0;
   background-color: white;
   border: 2px solid #5d5fef;
@@ -45,9 +54,9 @@ button {
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s;
 }
-button:hover,
-button:active,
-button:focus {
+.download:hover,
+.download:active,
+.download:focus {
   background-color: #5d5fef;
   color: white;
 }
@@ -83,23 +92,12 @@ main {
   background: white;
   position: relative;
 }
-footer {
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  background: white;
-  border-top: 1px solid #e2e2e2;
-  padding: 0.5rem;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+
 header > h1 {
   font-size: 1.45rem;
   line-height: 2rem;
   padding: 0;
   margin: 8px 0;
-  color: #666;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -179,4 +177,44 @@ header > h1 {
   .video-js {
     position: absolute;
   }
+}
+
+dialog {
+  background: #fff;
+  width: clamp(20ch, 80%, 40ch);
+  text-align: center;
+  padding: 1.5em;
+  border: 2px solid #5d5fef;
+  border-radius: 8px;
+}
+
+dialog > h2 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+dialog::backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #343446;
+  opacity: 0.5;
+}
+
+dialog > button {
+  background-color: transparent;
+  border: 0;
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }

@@ -93,12 +93,18 @@ Popcorn(function () {
 document.addEventListener("DOMContentLoaded", function () {
   const video = document.querySelector("video");
   const h1 = document.querySelector("h1");
-  document.querySelector("button").addEventListener("click", function () {
-    const a = document.createElement("a");
-    a.href = video.src;
-    a.download = `recording-${h1.innerText}.mv4`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  const dialog = document.querySelector("dialog");
+  const downloadLink = document.querySelector("a.download");
+
+  document
+    .querySelector("button.download")
+    .addEventListener("click", function () {
+      downloadLink.href = video.src;
+      downloadLink.download = `recording-${h1.innerText}.mp4`;
+      downloadLink.click();
+      dialog.showModal();
+    });
+  document.querySelector("button#close").addEventListener("click", function () {
+    dialog.close();
   });
 });
