@@ -224,7 +224,6 @@ header > h1 {
     position: absolute;
   }
 }
-
 dialog {
   background: #fff;
   width: clamp(20ch, 80%, 40ch);
@@ -233,12 +232,10 @@ dialog {
   border: 2px solid #5d5fef;
   border-radius: 8px;
 }
-
 dialog > h2 {
   font-size: 1.5em;
   margin: 0;
 }
-
 dialog::backdrop {
   position: fixed;
   top: 0;
@@ -248,8 +245,7 @@ dialog::backdrop {
   background-color: #343446;
   opacity: 0.5;
 }
-
-dialog > button {
+dialog > button.close {
   background-color: transparent;
   border: 0;
   border-radius: 8px;
@@ -264,7 +260,6 @@ dialog > button {
   top: 5px;
   right: 5px;
 }
-
 .button-group {
   display: flex;
   gap: 8px;
@@ -272,19 +267,20 @@ dialog > button {
 .button-group > button {
   flex: 1;
 }
-
 .text-primary {
   color: #5d5fef;
 }
-
 button.close {
   color: inherit;
   transition: color 0.2s;
 }
-
 button.close:hover,
 button.close:active,
 button.close:focus {
   color: #5d5fef;
   background-color: transparent;
+}
+button#ok {
+  min-width: 12ch;
+  margin: auto;
 }

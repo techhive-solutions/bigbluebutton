@@ -119,4 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .forEach((button) =>
       button.addEventListener("click", () => button.parentElement.close())
     );
+  document
+    .querySelector("button#ok")
+    .addEventListener("click", () => downloadingModal.close());
 });
