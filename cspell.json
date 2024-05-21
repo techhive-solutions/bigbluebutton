@@ -1,5 +1,9 @@
 {
-  "words": ["xlink", "datetime"],
+  "words": [
+    "datetime",
+    "videojs",
+    "xlink"
+  ],
   "ignorePaths": [
     "package-lock.json",
     "pnpm-lock.yaml",
