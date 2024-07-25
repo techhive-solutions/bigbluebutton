@@ -182,6 +182,19 @@ public class RecordingServiceDbImpl implements RecordingService {
     }
 
     @Override
+    public boolean changeStateToDeleted(String recordingId, String format) {
+        Recording recording = dataStore.findRecordingByRecordId(recordingId);
+        if(recording != null) {
+            recording.setState("deleted");
+            dataStore.save(recording);
+            return true;
+        } else {
+            logger.error("A recording with ID {} does not exist", recordingId);
+        }
+        return false;
+    }
+
+    @Override
     public void updateMetaParams(List<String> recordIDs, Map<String, String> metaParams) {
         Set<Recording> recordings = new HashSet<>();
         for(String id: recordIDs) {
