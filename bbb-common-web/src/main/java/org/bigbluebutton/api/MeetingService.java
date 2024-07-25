@@ -588,9 +588,9 @@ public class MeetingService implements MessageListener {
     }
   }
 
-  public void deleteRecordings(List<String> idList) {
+  public void deleteRecordings(List<String> idList, String format) {
     for (String id : idList) {
-      if (recordingService.changeState(id, Recording.STATE_DELETED)) {
+      if (recordingService.changeStateToDeleted(id, format)) {
         gw.deletedRecording(new DeletedRecordingMessage(id));
       }
     }

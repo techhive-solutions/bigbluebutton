@@ -488,11 +488,30 @@ public class RecordingServiceFileImpl implements RecordingService {
         return succeeded;
     }
 
+    public boolean changeStateToDeleted(String recordingId, String format) {
+        boolean succeeded = false;
+
+        // Making a formats array of proper size, published or unpublished doesn't matter
+        System.out.println("Getting playback formats at " + publishedDir);
+        List<File> dirs = getDirectories(publishedDir);
+        String[] formats = new String[dirs.size()];
+        formats[0] = format;
+
+        // It can be deleted from any state
+        succeeded |= changeState(publishedDir, recordingId, Recording.STATE_DELETED, formats);
+        succeeded |= changeState(unpublishedDir, recordingId, Recording.STATE_DELETED, formats);
+        return succeeded;
+    }
+
     private boolean changeState(String path, String recordingId, String state) {
+        String[] formats = getPlaybackFormats(path);
+        return changeState(path, recordingId, state, formats);
+    }
+
+    private boolean changeState(String path, String recordingId, String state, String[] formats) {
         boolean exists = false;
         boolean succeeded = true;
-        String[] format = getPlaybackFormats(path);
-        for (String aFormat : format) {
+        for (String aFormat : formats) {
             List<File> recordings = getDirectories(path + File.separatorChar + aFormat);
             for (File recording : recordings) {
                 if (recording.getName().equalsIgnoreCase(recordingId)) {
@@ -732,4 +751,3 @@ public class RecordingServiceFileImpl implements RecordingService {
     }
 
 }
-
