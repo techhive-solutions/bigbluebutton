@@ -341,6 +341,8 @@ class RecordingController {
       format = "all"
     }
 
+    log.debug("Format to be deleted: " + format)
+
     if (errors.hasErrors()) {
       respondWithErrors(errors)
       return
