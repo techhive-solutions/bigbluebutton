@@ -66,7 +66,7 @@ events_dir: /var/bigbluebutton/events
 recording_dir: /var/bigbluebutton/recording
 published_dir: /var/bigbluebutton/published
 captions_dir: /var/bigbluebutton/captions
-playback_host: meet.tutorbees.net
+playback_host: meet.muhammadkhan.dev
 playback_protocol: https
 # For DEVELOPMENT
 # This allows us to run the scripts manually
