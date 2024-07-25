@@ -40,6 +40,7 @@ public interface RecordingService {
     String getRecordings2x(List<String> idList, List<String> states, Map<String, String> metadataFilters, int offset, Pageable pageable);
     boolean existAnyRecording(List<String> idList);
     boolean changeState(String recordingId, String state);
+    boolean changeStateToDeleted(String recordingId, String format);
     void updateMetaParams(List<String> recordIDs, Map<String,String> metaParams);
     void startIngestAndProcessing(String meetingId);
     void markAsEnded(String meetingId);

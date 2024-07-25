@@ -335,6 +335,12 @@ class RecordingController {
       errors.missingParamError("recordID");
     }
 
+    // Extract format to be deleted, if not present, set it to "all"
+    String format = params.format
+    if (StringUtils.isEmpty(format)) {
+      format = "all"
+    }
+
     if (errors.hasErrors()) {
       respondWithErrors(errors)
       return
@@ -359,7 +365,7 @@ class RecordingController {
       // END - backward compatibility
     }
 
-    meetingService.deleteRecordings(recordIdList);
+    meetingService.deleteRecordings(recordIdList, format);
     withFormat {
       xml {
         // No need to use the response builder here until we have a more complex response
@@ -420,7 +426,7 @@ class RecordingController {
       return
     }
     // END - backward compatibility
-    
+
     String recId = StringUtils.strip(params.recordID)
     String result = meetingService.getRecordingTextTracks(recId)
 
