@@ -491,15 +491,23 @@ public class RecordingServiceFileImpl implements RecordingService {
     public boolean changeStateToDeleted(String recordingId, String format) {
         boolean succeeded = false;
 
-        // Making a formats array of proper size, published or unpublished doesn't matter
-        System.out.println("Getting playback formats at " + publishedDir);
-        List<File> dirs = getDirectories(publishedDir);
-        String[] formats = new String[dirs.size()];
-        formats[0] = format;
+        // Get all available formats and delete the recording from all of them if format is "all"
+        if (format == "all") {
+            succeeded |= changeState(publishedDir, recordingId, Recording.STATE_DELETED);
+            succeeded |= changeState(unpublishedDir, recordingId, Recording.STATE_DELETED);
+        }
+        else {
+            // Making a formats array of proper size, published or unpublished doesn't matter
+            System.out.println("Getting playback formats at " + publishedDir);
+            List<File> dirs = getDirectories(publishedDir);
+            String[] formats = new String[dirs.size()];
+            formats[0] = format; // Set the specified format
 
-        // It can be deleted from any state
-        succeeded |= changeState(publishedDir, recordingId, Recording.STATE_DELETED, formats);
-        succeeded |= changeState(unpublishedDir, recordingId, Recording.STATE_DELETED, formats);
+            // It can be deleted from any state
+            succeeded |= changeState(publishedDir, recordingId, Recording.STATE_DELETED, formats);
+            succeeded |= changeState(unpublishedDir, recordingId, Recording.STATE_DELETED, formats);
+        }
+
         return succeeded;
     }
 
