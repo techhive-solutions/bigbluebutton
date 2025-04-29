@@ -109,7 +109,7 @@ const createEndpointTableData = [
     "name": "breakoutRoomsRecord",
     "required": "Optional(Breakout Room)",
     "type": "Boolean",
-    "default": "true",
+    "default": "false",
     "description": (<>If set to false, breakout rooms will not be recorded.</>)
   },
   {
@@ -364,7 +364,7 @@ const createEndpointTableData = [
     "required": false,
     "type": "Boolean",
     "default": "false",
-    "description": (<>If it is true, a modal will be displayed to collect recording consent from users when meeting recording starts (only if <code className="language-plaintext highlighter-rouge">remindRecordingIsOn=true</code>). By default it is false. (added 2.6)</>)
+    "description": (<>If it is true, a modal will be displayed to collect recording consent from users when meeting recording starts (only if <code className="language-plaintext highlighter-rouge">notifyRecordingIsOn=true</code>). By default it is false. (added 2.6)</>)
   },
   {
     "name": "presentationUploadExternalUrl",
@@ -396,6 +396,13 @@ const createEndpointTableData = [
     "required": false,
     "type": "String",
     "description": (<>If passed it will use this string as the name of the presentation uploaded via <code className="language-plaintext highlighter-rouge">preUploadedPresentation</code> (added 2.7.2)</>)
+  },
+  {
+    "name": "allowPromoteGuestToModerator",
+    "required": false,
+    "type": "Boolean",
+    "default": "false",
+    "description": (<> If passed as true, we allow moderators to promote guests to moderators even if the authenticatedGuest config is enabled. The defaultAllowPromoteGuestToModerator configuration sets this behaviour globally for all meetings if no api parameter is passed (added in BBB 2.7.9)</>)
   }
 ]
 

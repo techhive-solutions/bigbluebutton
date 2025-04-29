@@ -93,7 +93,7 @@ const EmojiRain = ({ reactions }) => {
   }, [EMOJI_RAIN_ENABLED, animations, isAnimating]);
 
   useEffect(() => {
-    if (isAnimating) {
+    if (isAnimating && animations !== false) {
       reactions.forEach((reaction) => {
         const currentTime = new Date().getTime();
         const secondsSinceCreated = (currentTime - reaction.creationDate.getTime()) / 1000;
@@ -115,7 +115,7 @@ const EmojiRain = ({ reactions }) => {
     zIndex: 2,
   };
 
-  return <div ref={containerRef} style={containerStyle} />;
+  return <div ref={containerRef} style={containerStyle} data-test="emojiRain" />;
 };
 
 export default EmojiRain;

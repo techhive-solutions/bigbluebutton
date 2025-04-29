@@ -104,9 +104,11 @@ Updated in 2.6:
 
 Updated in 2.7:
 
-- **create** - **Added:** `preUploadedPresentation`, `preUploadedPresentationName`, `disabledFeatures` options`cameraAsContent`, `snapshotOfCurrentSlide`, `downloadPresentationOriginalFile`, `downloadPresentationConvertedToPdf`, `timer`, `learningDashboardDownloadSessionData` (2.7.5).
+- **create** - **Added:** `preUploadedPresentation`, `preUploadedPresentationName`, `allowPromoteGuestToModerator` (2.7.9), `disabledFeatures` options`cameraAsContent`, `snapshotOfCurrentSlide`, `downloadPresentationOriginalFile`, `downloadPresentationConvertedToPdf`, `timer`, `learningDashboardDownloadSessionData` (2.7.5).
 
-- **join** - **Added:** `redirectErrorUrl`, `userdata-bbb_fullaudio_bridge` and removed support for all HTTP request methods except GET
+- **join** - **Added:** `errorRedirectUrl`, `webcamBackgroundURL`, `userdata-bbb_fullaudio_bridge` and removed support for all HTTP request methods except GET
+
+- **getRecordings** - **Updated:** Modified paginated response to remove excess pagination metadata and only return `totalElements` in addition to the normal response data.
 
 ## API Data Types
 
@@ -505,9 +507,11 @@ There is a XML response for this call only when the `redirect` parameter is set 
 </response>
 ```
 
+See [Passing custom parameters to the client on join](/administration/customize/#passing-custom-parameters-to-the-client-on-join) for additional `join` parameters that can override default settings for the user.
+
 ### `POST` insertDocument
 
-This endpoint insert one or more documents into a running meeting via API call
+This endpoint insert one or more documents into a running meeting via API call.
 
 **Resource URL:**
 
@@ -785,7 +789,7 @@ http&#58;//yourserver.com/bigbluebutton/api/getMeetings?checksum=1234
 
 ### `GET` getRecordings
 
-Retrieves the recordings that are available for playback for a given meetingID (or set of meeting IDs). Support for pagination was added in 2.6.
+Retrieves the recordings that are available for playback for a given meetingID (or set of meeting IDs). Support for pagination was added in 2.6. As of 2.7 when pagination is enabled for the response, through the use of the limit and/or offset parameters, the total number of recordings that match the provided criteria will be returned via the `totalElements` tag.
 
 **Resource URL:**
 
@@ -895,6 +899,18 @@ Here the `getRecordings` API call returned back two recordings for the meetingID
          </playback>
       </recording>
    </recordings>
+</response>
+```
+
+**Example Paginated Response:**
+
+```xml
+<response>
+    <returncode>SUCCESS</returncode>
+    <recordings>
+        ...
+    </recordings>
+    <totalElements>3</totalElements>
 </response>
 ```
 
@@ -1212,3 +1228,47 @@ For example, the application may be able to register a URL that BigBlueButton wo
 - http&#58;//third-party-app/bbb-integ.php?event=meetingEnded&meetingID=abcd
 - http&#58;//third-party-app/bbb-integ.php?event=userLeft&userID=1234
 - http&#58;//third-party-app/bbb-integ.php?event=meetingEnded&meetingID=abcd
+
+## Other Topics
+
+### Supported Document Types
+
+#### PDF Documents
+
+- PDF:
+  - .pdf
+
+#### Office Documents
+
+- Microsoft Word:
+  - .doc
+  - .docx
+- Microsoft Excel:
+  - .xls
+  - .xlsx
+- Microsoft PowerPoint:
+  - .ppt
+  - .pptx
+- OpenDocument Formats:
+  - .odt (Text Document)
+  - .ods (Spreadsheet)
+  - .odp (Presentation)
+  - .odg (Graphics)
+
+#### Image Files
+
+- Common Image Formats:
+  - .jpg
+  - .jpeg
+  - .png
+  - .webp
+  - .svg
+
+#### Text Files
+
+- Rich Text Format:
+  - .rtf
+- Plain Text:
+  - .txt
+
+All these valid formats are also present in a list in the [back-end](https://github.com/bigbluebutton/bigbluebutton/blob/v2.7.10/bbb-common-web/src/main/java/org/bigbluebutton/presentation/MimeTypeUtils.java#L28-L47) and in the [front-end](https://github.com/bigbluebutton/bigbluebutton/blob/v2.7.10/bigbluebutton-html5/private/config/settings.yml#L824-L862) if more details are needed.

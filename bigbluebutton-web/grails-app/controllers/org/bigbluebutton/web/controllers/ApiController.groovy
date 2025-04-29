@@ -237,8 +237,14 @@ class ApiController {
       } catch (Exception ignored) {}
     }
 
+    String errorRedirectUrl = ""
+    if(!StringUtils.isEmpty(params.errorRedirectUrl)) {
+      errorRedirectUrl = params.errorRedirectUrl
+    }
+
+
     if(!(validationResponse == null)) {
-      invalid(validationResponse.getKey(), validationResponse.getValue(), redirectClient)
+      invalid(validationResponse.getKey(), validationResponse.getValue(), redirectClient, errorRedirectUrl)
       return
     }
 
@@ -263,11 +269,6 @@ class ApiController {
     String attPW = params.password
 
     Meeting meeting = ServiceUtils.findMeetingFromMeetingID(params.meetingID);
-
-    String errorRedirectUrl = ""
-    if(!StringUtils.isEmpty(params.errorRedirectUrl)) {
-      errorRedirectUrl = params.errorRedirectUrl
-    }
 
     // the createTime mismatch with meeting's createTime, complain
     // In the future, the createTime param will be required
@@ -405,6 +406,12 @@ class ApiController {
       us.avatarURL = meeting.defaultAvatarURL
     }
 
+    if (!StringUtils.isEmpty(params.webcamBackgroundURL)) {
+      us.webcamBackgroundURL = params.webcamBackgroundURL;
+    } else {
+      us.webcamBackgroundURL = meeting.defaultWebcamBackgroundURL
+    }
+
     if (!StringUtils.isEmpty(params.excludeFromDashboard)) {
       try {
         us.excludeFromDashboard = Boolean.parseBoolean(params.excludeFromDashboard)
@@ -435,6 +442,7 @@ class ApiController {
         us.externUserID,
         us.authToken,
         us.avatarURL,
+        us.webcamBackgroundURL,
         us.guest,
         us.authed,
         guestStatusVal,
@@ -941,6 +949,7 @@ class ApiController {
             logoutUrl us.logoutUrl
             defaultLayout us.defaultLayout
             avatarURL us.avatarURL
+            webcamBackgroundURL us.webcamBackgroundURL
             if (meeting.breakoutRoomsParams != null) {
               breakoutRooms {
                 record meeting.breakoutRoomsParams.record
