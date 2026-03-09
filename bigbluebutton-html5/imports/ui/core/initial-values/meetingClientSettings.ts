@@ -637,7 +637,7 @@ export const meetingClientSettingsInitialValues: MeetingClientSettings = {
       audioConnectionTimeout: 5000,
       audioReconnectionDelay: 5000,
       audioReconnectionAttempts: 3,
-      sipjsHackViaWs: false,
+      sipjsHackViaWs: true,
       sipjsAllowMdns: false,
       sip_ws_host: '',
       toggleMuteThrottleTime: 300,
