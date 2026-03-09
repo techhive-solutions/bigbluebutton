@@ -1,29 +1,29 @@
-import TabPanelUnstyled from "@mui/base/TabPanelUnstyled";
-import TabUnstyled from "@mui/base/TabUnstyled";
-import TabsListUnstyled from "@mui/base/TabsListUnstyled";
-import TabsUnstyled from "@mui/base/TabsUnstyled";
-import { Stack } from "@mui/material";
+import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import React from "react";
-import {
-  FormattedDate,
-  FormattedMessage,
-  FormattedTime,
-  injectIntl,
-} from "react-intl";
+import TabUnstyled from "@mui/base/TabUnstyled";
+import TabsListUnstyled from "@mui/base/TabsListUnstyled";
+import TabPanelUnstyled from "@mui/base/TabPanelUnstyled";
+import TabsUnstyled from "@mui/base/TabsUnstyled";
+import { Stack } from "@mui/material";
 import "./App.css";
+import {
+  FormattedMessage,
+  FormattedDate,
+  injectIntl,
+  FormattedTime,
+} from "react-intl";
 import CardBody from "./components/Card";
-import ErrorMessage from "./components/ErrorMessage";
-import PluginsTable from "./components/PluginsTable";
-import PollsTable from "./components/PollsTable";
-import QuizzesChart from "./components/QuizzesChart";
-import QuizzesTable from "./components/QuizzesTable";
-import StatusTable from "./components/StatusTable";
+import UsersTable from "./components/UsersTable";
 import UserDetails from "./components/UserDetails/component";
 import { UserDetailsContext } from "./components/UserDetails/context";
-import UsersTable from "./components/UsersTable";
+import StatusTable from "./components/StatusTable";
+import PollsTable from "./components/PollsTable";
+import PluginsTable from "./components/PluginsTable";
+import ErrorMessage from "./components/ErrorMessage";
 import { makeUserCSVData, tsToHHmmss } from "./services/UserService";
+import QuizzesTable from "./components/QuizzesTable";
+import QuizzesChart from "./components/QuizzesChart";
 
 const TABS = {
   OVERVIEW: 0,
@@ -436,7 +436,7 @@ class App extends React.Component {
       ...new Set(pluginUserDataColumnTitleWithDuplicates),
     ];
 
-    document.title = `${intl.formatMessage({ id: "app.learningDashboard.bigbluebuttonTitle", defaultMessage: "BigBlueButton" })} - ${intl.formatMessage({ id: "app.learningDashboard.dashboardTitle", defaultMessage: "Learning Analytics Dashboard" })} - ${activitiesJson.name}`;
+    document.title = `${intl.formatMessage({ id: "app.learningDashboard.bigbluebuttonTitle", defaultMessage: "Whiteboard" })} - ${intl.formatMessage({ id: "app.learningDashboard.dashboardTitle", defaultMessage: "Learning Analytics Dashboard" })} - ${activitiesJson.name}`;
 
     if (loading === false && this.getErrorMessage() !== "")
       return <ErrorMessage message={this.getErrorMessage()} />;
