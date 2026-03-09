@@ -301,14 +301,14 @@ class OptionsDropdown extends PureComponent {
         description: intl.formatMessage(intlMessages.settingsDesc),
         onClick: () => this.setOptionsMenuModalIsOpen(),
       },
-      {
-        key: 'list-item-about',
-        icon: 'about',
-        dataTest: 'aboutModal',
-        label: intl.formatMessage(intlMessages.aboutLabel),
-        description: intl.formatMessage(intlMessages.aboutDesc),
-        onClick: () => this.setAboutModalIsOpen(),
-      },
+      // {
+      //   key: 'list-item-about',
+      //   icon: 'about',
+      //   dataTest: 'aboutModal',
+      //   label: intl.formatMessage(intlMessages.aboutLabel),
+      //   description: intl.formatMessage(intlMessages.aboutDesc),
+      //   onClick: () => this.setAboutModalIsOpen(),
+      // },
     );
 
     if (helpButton) {
