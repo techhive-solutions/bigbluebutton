@@ -290,7 +290,7 @@ public:
         accesskey: K
         descId: openDebugWindow
     branding:
-      displayBrandingArea: true
+      displayBrandingArea: false
     connectionTimeout: 60000
     showHelpButton: false
     effectiveConnection:
