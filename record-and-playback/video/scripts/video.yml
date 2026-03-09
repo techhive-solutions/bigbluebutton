@@ -93,7 +93,7 @@ presets:
       # Various special cases for hiding the deskshare when screenshare_as_content is false.
       #
       # If there are webcams, and the presentation area has not been used, show only webcams
-      - required: [webcam, deskshare]
+      - required: [ webcam, deskshare ]
         areas:
           - { name: presentation, hidden: true }
           - { name: webcam, x: 0, y: 0, width: 1920, height: 1080 }
@@ -102,7 +102,7 @@ presets:
           presentation_used: false
           screenshare_as_content: false
       # Show presentation with webcams at side if presentation area has been used
-      - required: [presentation, webcam, deskshare]
+      - required: [ presentation, webcam, deskshare ]
         areas:
           - { name: presentation, x: 0, y: 0, width: 1600, height: 1080 }
           - { name: webcam, x: 1600, y: 0, width: 320, height: 1080 }
@@ -110,7 +110,7 @@ presets:
         conditions:
           screenshare_as_content: false
       # Show only presentation if there are no webcams (even if it hasn't been used)
-      - required: [presentation, deskshare]
+      - required: [ presentation, deskshare ]
         areas:
           - { name: presentation, x: 0, y: 0, width: 1920, height: 1080 }
           - { name: deskshare, hidden: true }
@@ -119,7 +119,7 @@ presets:
 
       # Have the webcams cover the whole area of the video if presentation area has not been used
       # and deskshare is not active.
-      - required: [webcam]
+      - required: [ webcam ]
         areas:
           - { name: presentation, hidden: true }
           - { name: webcam, x: 0, y: 0, width: 1920, height: 1080 }
@@ -137,21 +137,12 @@ presets:
       # The default format is very fast to generate, and works by copying the temporary video
       # (using the working format codec defined in core/lib/recordandplayback/edl/video.rb) without
       # an extra re-encoding step.
-      - mimetype: "video/mp4"
+      - mimetype: 'video/mp4'
         extension: m4v
         parameters:
-          - [
-              "-c:v",
-              "copy",
-              "-c:a",
-              "aac",
-              "-b:a",
-              "128K",
-              "-f",
-              "mp4",
-              "-movflags",
-              "faststart",
-            ]
+          - [ '-c:v', 'copy',
+              '-c:a', 'aac', '-b:a', '128K',
+              '-f', 'mp4', '-movflags', 'faststart' ]
         postprocess: []
 
       # An alternative is to re-encode the video to vp9. The options selected here are inspired by
@@ -207,7 +198,7 @@ presets:
       # Various special cases for hiding the deskshare when screenshare_as_content is false.
       #
       # If there are webcams, and the presentation area has not been used, show only webcams
-      - required: [webcam, deskshare]
+      - required: [ webcam, deskshare ]
         areas:
           - { name: presentation, hidden: true }
           - { name: webcam, x: 0, y: 0, width: 1280, height: 720 }
@@ -216,7 +207,7 @@ presets:
           presentation_used: false
           screenshare_as_content: false
       # Show presentation with webcams at side when presentation area has been used
-      - required: [presentation, webcam, deskshare]
+      - required: [ presentation, webcam, deskshare ]
         areas:
           - { name: presentation, x: 0, y: 0, width: 960, height: 720 }
           - { name: webcam, x: 960, y: 0, width: 320, height: 720 }
@@ -224,7 +215,7 @@ presets:
         conditions:
           screenshare_as_content: false
       # Show only presentation if there are no webcams (even if it hasn't been used)
-      - required: [presentation, deskshare]
+      - required: [ presentation, deskshare ]
         areas:
           - { name: presentation, x: 0, y: 0, width: 1280, height: 720 }
           - { name: deskshare, hidden: true }
@@ -233,7 +224,7 @@ presets:
 
       # Have the webcams cover the whole area of the video if presentation area has not been used
       # and deskshare is not active.
-      - required: [webcam]
+      - required: [ webcam ]
         areas:
           - { name: presentation, hidden: true }
           - { name: webcam, x: 0, y: 0, width: 1280, height: 720 }
@@ -242,7 +233,7 @@ presets:
 
       # Show both deskshare and webcams
       # Adjust the deskshare area to be slightly larger than the standard presentation area
-      - required: [webcam, deskshare]
+      - required: [ webcam, deskshare ]
         areas:
           - { name: presentation, hidden: true }
           - { name: webcam, x: 1040, y: 0, width: 240, height: 720 }
@@ -253,23 +244,14 @@ presets:
       - areas:
           - { name: presentation, x: 0, y: 0, width: 1280, height: 720 }
           - { name: deskshare, x: 0, y: 0, width: 1280, height: 720 }
-
+    
     formats:
-      - mimetype: "video/mp4"
+      - mimetype: 'video/mp4'
         extension: m4v
         parameters:
-          - [
-              "-c:v",
-              "copy",
-              "-c:a",
-              "aac",
-              "-b:a",
-              "128K",
-              "-f",
-              "mp4",
-              "-movflags",
-              "faststart",
-            ]
+          - [ '-c:v', 'copy',
+              '-c:a', 'aac', '-b:a', '128K',
+              '-f', 'mp4', '-movflags', 'faststart' ]
         postprocess: []
 
       # An alternative is to re-encode the video to vp9. The options selected here are inspired by
