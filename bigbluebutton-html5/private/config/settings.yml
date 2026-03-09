@@ -322,7 +322,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: wss://meet.muhammadkhan.dev/bbb-webrtc-sfu
+    wsUrl: wss://meet.tutorbees.net/bbb-webrtc-sfu
     cameraWsOptions:
       # Valid for video-provider. Time (ms) before its WS connection times out
       # and tries to reconnect.
@@ -832,7 +832,7 @@ public:
     # if false, the user can't change the layout (no layout selection modal)
     enableDeprecatedLayoutSelection: true
   pads:
-    url: https://meet.muhammadkhan.dev/pad
+    url: https://meet.tutorbees.net/pad
   media:
     audio:
       # defaultFullAudioBridge: bridge to be used by full audio mechanism.
@@ -1282,7 +1282,7 @@ public:
     external:
       enabled: false
       level: info
-      url: https://meet.muhammadkhan.dev/html5Log
+      url: https://meet.tutorbees.net/html5Log
       method: POST
       throttleInterval: 400
       flushOnClose: true

@@ -6,13 +6,13 @@
         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 >
   <bean id="stun0" class="org.bigbluebutton.web.services.turn.StunServer">
-    <constructor-arg index="0" value="stun:turn.muhammadkhan.dev" />
+    <constructor-arg index="0" value="stun:turn.tutorbees.net" />
   </bean>
   <bean id="turn0" class="org.bigbluebutton.web.services.turn.TurnServer">
     <constructor-arg index="0" value="daa8953a8a7cc62664d34508c246f66a" />
     <constructor-arg
       index="1"
-      value="turns:turn.muhammadkhan.dev:443?transport=tcp"
+      value="turns:turn.tutorbees.net:443?transport=tcp"
     />
     <constructor-arg index="2" value="86400" />
   </bean>
@@ -20,7 +20,7 @@
     <constructor-arg index="0" value="daa8953a8a7cc62664d34508c246f66a" />
     <constructor-arg
       index="1"
-      value="turn:turn.muhammadkhan.dev:443?transport=tcp"
+      value="turn:turn.tutorbees.net:443?transport=tcp"
     />
     <constructor-arg index="2" value="86400" />
   </bean>
