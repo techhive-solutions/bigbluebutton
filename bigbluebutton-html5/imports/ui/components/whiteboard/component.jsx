@@ -426,7 +426,9 @@ const Whiteboard = React.memo((props) => {
         }
       }
 
-      tlEditorRef?.current?.setCurrentTool(initialSelectedTool);
+      if (initialSelectedTool) {
+        tlEditorRef?.current?.setCurrentTool(initialSelectedTool);
+      }
     }
   }, [hasWBAccess]);
 
