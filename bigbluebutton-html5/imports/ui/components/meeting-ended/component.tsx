@@ -210,32 +210,6 @@ const MeetingEnded: React.FC<MeetingEndedProps> = ({
     return (
       (
         <Styled.Wrapper>
-          {
-            learningDashboardAccessToken && isModerator
-            // Always set cookie in case Dashboard is already opened
-            && setLearningDashboardCookie(learningDashboardAccessToken, meetingId, learningDashboardBase) === true
-              ? (
-                <>
-                  <Styled.Text>
-                    {intl.formatMessage(intlMessage.open_activity_report_btn)}
-                  </Styled.Text>
-
-                  <Styled.MeetingEndedButton
-                    color="default"
-                    onClick={() => openLearningDashboardUrl(learningDashboardAccessToken,
-                      meetingId,
-                      authToken,
-                      learningDashboardBase,
-                      locale)}
-                    aria-details={intl.formatMessage(intlMessage.open_activity_report_btn)}
-                  >
-                    <Icon
-                      iconName="multi_whiteboard"
-                    />
-                  </Styled.MeetingEndedButton>
-                </>
-              ) : null
-          }
           <Styled.Text>
             {intl.formatMessage(intlMessage.messageEnded)}
           </Styled.Text>
