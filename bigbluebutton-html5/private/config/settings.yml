@@ -894,7 +894,7 @@ public:
     # To disable the dedicated listen only option in the audio modal,
     # see `listenOnlyMode`/`userdata-bbb_transparent_listen_only_mode`
     # userdata-bbb_transparent_listen_only supersedes this setting
-    transparentListenOnly: true
+    transparentListenOnly: false
     # Dev flag. Controls the WebRTC SDP negotiation role for SFU full audio.
     fullAudioOffering: true
     # Dev flag. Controls the WebRTC negotiation role for listen only.
