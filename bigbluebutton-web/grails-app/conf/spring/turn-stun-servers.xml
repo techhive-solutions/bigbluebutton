@@ -9,7 +9,10 @@
     <constructor-arg index="0" value="stun:turn.tutorbees.net" />
   </bean>
   <bean id="turn0" class="org.bigbluebutton.web.services.turn.TurnServer">
-    <constructor-arg index="0" value="daa8953a8a7cc62664d34508c246f66a" />
+    <constructor-arg
+      index="0"
+      value="xKRhs3L6WCRKSLqbYi9JE2YInGQPuphrwi7onB+hhtM="
+    />
     <constructor-arg
       index="1"
       value="turns:turn.tutorbees.net:443?transport=tcp"
@@ -17,7 +20,10 @@
     <constructor-arg index="2" value="86400" />
   </bean>
   <bean id="turn1" class="org.bigbluebutton.web.services.turn.TurnServer">
-    <constructor-arg index="0" value="daa8953a8a7cc62664d34508c246f66a" />
+    <constructor-arg
+      index="0"
+      value="xKRhs3L6WCRKSLqbYi9JE2YInGQPuphrwi7onB+hhtM="
+    />
     <constructor-arg
       index="1"
       value="turn:turn.tutorbees.net:443?transport=tcp"
