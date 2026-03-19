@@ -15,6 +15,10 @@
          https://bugs.webkit.org/show_bug.cgi?id=219274, so we omit the 'turn' protocol over
          port 443.
      -->
+  <bean id="stun0" class="org.bigbluebutton.web.services.turn.StunServer">
+    <constructor-arg index="0" value="stun:stun.l.google.com:19302" />
+  </bean>
+
   <bean id="turn0" class="org.bigbluebutton.web.services.turn.TurnServer">
     <constructor-arg
       index="0"
@@ -40,7 +44,9 @@
     class="org.bigbluebutton.web.services.turn.StunTurnService"
   >
     <property name="stunServers">
-      <set> </set>
+      <set>
+        <ref bean="stun0" />
+      </set>
     </property>
     <property name="turnServers">
       <set>
