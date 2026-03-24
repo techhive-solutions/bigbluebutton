@@ -5,20 +5,11 @@
   xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
 >
-  <!--
-         We need turn0 for FireFox to workaround its limited ICE implementation.
-         This is UDP connection.  Note that port 3478 must be open on this BigBlueButton
-         and reachable by the client.
-
-         Also, in 2.5, we previously defined turn:$HOST:443?transport=tcp (not 'turns')
-         to workaround a bug in Safari's handling of Let's Encrypt. This bug is now fixed
-         https://bugs.webkit.org/show_bug.cgi?id=219274, so we omit the 'turn' protocol over
-         port 443.
-     -->
   <bean id="stun0" class="org.bigbluebutton.web.services.turn.StunServer">
-    <constructor-arg index="0" value="stun:stun.l.google.com:19302" />
+    <constructor-arg index="0" value="stun:turn.muhammadkhan.dev" />
   </bean>
 
+  <!-- Local TURN on 3478 — works for most users -->
   <bean id="turn0" class="org.bigbluebutton.web.services.turn.TurnServer">
     <constructor-arg
       index="0"
@@ -27,14 +18,29 @@
     <constructor-arg index="1" value="turn:meet.tutorbees.net:3478" />
     <constructor-arg index="2" value="86400" />
   </bean>
+
+  <!-- External TURN TLS on 443 — saves users on restrictive networks -->
   <bean id="turn1" class="org.bigbluebutton.web.services.turn.TurnServer">
     <constructor-arg
       index="0"
-      value="xKRhs3L6WCRKSLqbYi9JE2YInGQPuphrwi7onB+hhtM="
+      value="n6wvXlPo7a17gTfSCFy+rAp3gfUzTeG6O4xc2e58mEo="
     />
     <constructor-arg
       index="1"
-      value="turns:meet.tutorbees.net:443?transport=tcp"
+      value="turns:turn.muhammadkhan.dev:443?transport=tcp"
+    />
+    <constructor-arg index="2" value="86400" />
+  </bean>
+
+  <!-- External TURN plain TCP on 443 — fallback for older browsers -->
+  <bean id="turn2" class="org.bigbluebutton.web.services.turn.TurnServer">
+    <constructor-arg
+      index="0"
+      value="n6wvXlPo7a17gTfSCFy+rAp3gfUzTeG6O4xc2e58mEo="
+    />
+    <constructor-arg
+      index="1"
+      value="turn:turn.muhammadkhan.dev:443?transport=tcp"
     />
     <constructor-arg index="2" value="86400" />
   </bean>
@@ -52,6 +58,7 @@
       <set>
         <ref bean="turn0" />
         <ref bean="turn1" />
+        <ref bean="turn2" />
       </set>
     </property>
   </bean>
